@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.agrovetel</groupId>
-	<artifactId>agrovetel</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>agrovetel</name>
+	<artifactId>Agrovetel</artifactId>
+	<version>0.0.1</version>
+	<name>Agrovetel</name>
 	<description>This is a spring boot application for selling agricultural things.</description>
 
 	<properties>
