@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">E-mail</th>
+				<th scope="col">Fullname</th>
+				<th scope="col">Enabled</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${users}">
+				<td th:text="${user.id}">Mark</td>
+				<td th:text="${user.email}">Mark</td>
+				<td th:text="${user.fullname}">Mark</td>
+				<td th:text="${user.enabled}">Mark</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
