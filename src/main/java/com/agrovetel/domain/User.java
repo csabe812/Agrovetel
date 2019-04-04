@@ -1,6 +1,7 @@
 package com.agrovetel.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -32,13 +34,15 @@ public class User {
 	private String password;
 
 	private String fullname;
-private String activation;
+	private String activation;
 	
 	private Boolean enabled;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })
 	private Set<Role> roles = new HashSet<Role>();
+	@OneToMany(mappedBy="user")
+	private List<Ad> ads;
 
 	public User() {
 	}
