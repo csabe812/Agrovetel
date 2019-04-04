@@ -16,3 +16,8 @@ insert into categories(category_name) values ('Tractor');
 insert into categories(category_name) values ('Tyre');
 insert into categories(category_name) values ('Cultivator');
 insert into categories(category_name) values ('Other');
+
+insert into roles(role) values ('GLOBAL_ADMIN');
+insert into roles(role) values ('LOGGED_IN_USER');
+insert into roles(role) values ('NOT_LOGGET_IN_USER');
+insert into roles(role) values ('ADMIN');
