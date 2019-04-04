@@ -11,3 +11,8 @@ insert into users(email, enabled, password, fullname)
 values('jane@doe.com', false, 'janepass', 'Jane Doe');
 insert into users(email, enabled, password, fullname)
 values('king@kong.com', true, 'kingkongpass', 'King Kong');
+
+insert into categories(category_name) values ('Tractor');
+insert into categories(category_name) values ('Tyre');
+insert into categories(category_name) values ('Cultivator');
+insert into categories(category_name) values ('Other');
