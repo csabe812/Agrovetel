@@ -35,13 +35,13 @@ public class User {
 
 	private String fullname;
 	private String activation;
-	
+
 	private Boolean enabled;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })
 	private Set<Role> roles = new HashSet<Role>();
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Ad> ads;
 
 	public User() {
@@ -104,7 +104,7 @@ public class User {
 	}
 
 	public void addRoles(String roleName) {
-		if (this.roles == null || this.roles.isEmpty()) 
+		if (this.roles == null || this.roles.isEmpty())
 			this.roles = new HashSet<>();
 		this.roles.add(new Role(roleName));
 	}
