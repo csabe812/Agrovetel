@@ -16,7 +16,14 @@ public class AdService {
 	
 	public List<Ad> findAll() {
 		return (List<Ad>) adRepository.findAll();
+	}
+
+	public AdRepository getAdRepository() {
+		return adRepository;
+	}
+
+	public void setAdRepository(AdRepository adRepository) {
+		this.adRepository = adRepository;
 	};
 	
-
 }

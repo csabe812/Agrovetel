@@ -44,5 +44,7 @@ public class AdRepositoryTest {
 		assert(ad.get().getYearOfManufact()==1980);
 			
 	}
+	
+	
 
 }
