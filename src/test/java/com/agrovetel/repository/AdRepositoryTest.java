@@ -38,7 +38,7 @@ public class AdRepositoryTest {
 	@Test
 	public void testFindAdById2() {
 		Optional<Ad> ad = adRepository.findById((long) 1);
-		assertEquals(ad.get().getTitle(), "Ad1");
+		assert(ad.get().getTitle().equals("Ad1"));
 		assert(ad.get().getPrice()==20);
 		assert(ad.get().getHorsePower()==150);
 		assert(ad.get().getYearOfManufact()==1980);
