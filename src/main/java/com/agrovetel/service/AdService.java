@@ -1,5 +1,6 @@
 package com.agrovetel.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,17 @@ public class AdService {
 	
 	public List<Ad> findAll() {
 		return (List<Ad>) adRepository.findAll();
+	}
+	
+	public List<Ad> findAllByCategory(Long categoryId) {
+		List<Ad> adList = (List<Ad>) adRepository.findAll();
+		List<Ad> adListByCategory = new ArrayList<Ad>();
+		for (Ad ad : adList) {
+			if(ad.getCategory().getId()== categoryId) {
+				adListByCategory.add(ad);
+			}
+		}
+		return adListByCategory;
 	}
 
 	public AdRepository getAdRepository() {
