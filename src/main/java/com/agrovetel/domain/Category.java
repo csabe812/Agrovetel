@@ -36,6 +36,12 @@ public class Category {
 		this.id = id;
 	}
 
+	public Category(long id, String categoryName) {
+		super();
+		this.id = id;
+		this.categoryName = categoryName;
+	}
+
 	public Category(String categoryName) {
 		super();
 		this.categoryName = categoryName;

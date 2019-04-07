@@ -23,11 +23,11 @@ public class AdService {
 	 * Return with a list with all ad 
 	 * sorted by a category
 	 */
-	public List<Ad> findAllByCategory(Long categoryId) {
+	public List<Ad> findAllByCategory(long i) {
 		List<Ad> adList = (List<Ad>) adRepository.findAll();
 		List<Ad> adListByCategory = new ArrayList<Ad>();
 		for (Ad ad : adList) {
-			if(ad.getCategory().getId()== categoryId) {
+			if(ad.getCategory().getId()== i) {
 				adListByCategory.add(ad);
 			}
 		}
@@ -38,7 +38,7 @@ public class AdService {
 	 * Return with a list with all ad 
 	 * sorted by a user
 	 */
-	public List<Ad> findAllByUser(Long userId) {
+	public List<Ad> findAllByUser(long userId) {
 		List<Ad> adList = (List<Ad>) adRepository.findAll();
 		List<Ad> adListByUser = new ArrayList<Ad>();
 		for (Ad ad : adList) {

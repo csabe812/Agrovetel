@@ -50,6 +50,28 @@ public class Ad {
 
 	}
 
+	public Ad(String title) {
+		super();
+		this.title = title;
+	}
+
+	public Ad(long id, String title, @Min(0) double price, String description, LocalDateTime timeStamp,
+			boolean sellOrSearch, int horsePower, int yearOfManufact, Category category, Manufacturer manufacturer,
+			User user) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.price = price;
+		this.description = description;
+		this.timeStamp = timeStamp;
+		this.sellOrSearch = sellOrSearch;
+		this.horsePower = horsePower;
+		this.yearOfManufact = yearOfManufact;
+		this.category = category;
+		this.manufacturer = manufacturer;
+		this.user = user;
+	}
+
 	public Ad(String title, @Min(0) double price, LocalDateTime timeStamp, boolean sellOrSearch, User user) {
 		super();
 		this.title = title;

@@ -28,6 +28,12 @@ public class Manufacturer {
 
 	}
 
+	public Manufacturer(long id, String manufacturerName) {
+		super();
+		this.id = id;
+		this.manufacturerName = manufacturerName;
+	}
+
 	public Manufacturer(String manufacturerName) {
 		super();
 		this.manufacturerName = manufacturerName;

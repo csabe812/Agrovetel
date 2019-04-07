@@ -47,6 +47,14 @@ public class User {
 	public User() {
 	}
 
+	public User(long id, String fullname) {
+		super();
+		this.id = id;
+		this.fullname = fullname;
+	}
+
+
+
 	public long getId() {
 		return id;
 	}
