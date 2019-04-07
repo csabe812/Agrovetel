@@ -7,7 +7,7 @@ values('king@kong.com', true, 'kingkongpass', 'King Kong');
 
 insert into roles(role) values ('GLOBAL_ADMIN');
 insert into roles(role) values ('LOGGED_IN_USER');
-insert into roles(role) values ('NOT_LOGGET_IN_USER');
+insert into roles(role) values ('NOT_LOGGED_IN_USER');
 insert into roles(role) values ('ADMIN');
 
 insert into manufacturers(manufacturer_name) values ('MTZ');
