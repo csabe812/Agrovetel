@@ -10,6 +10,12 @@ insert into roles(role) values ('LOGGED_IN_USER');
 insert into roles(role) values ('NOT_LOGGET_IN_USER');
 insert into roles(role) values ('ADMIN');
 
+insert into manufacturers(manufacturer_name) values ('MTZ');
+insert into manufacturers(manufacturer_name) values ('Zetor');
+insert into manufacturers(manufacturer_name) values ('John Deere');
+insert into manufacturers(manufacturer_name) values ('New Holland');
+insert into manufacturers(manufacturer_name) values ('Yto');
+
 insert into categories(category_name) values ('Tractor');
 insert into categories(category_name) values ('Tyre');
 insert into categories(category_name) values ('Cultivator');
