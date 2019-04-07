@@ -21,9 +21,11 @@ public class AdController {
 	@GetMapping("/ads")
 	public List<Ad> displayAllAds() {
 		List<Ad> allAds = adService.findAll();
-		List<Ad> allAdsByCategory = adService.findAllByCategory((long) 1);
+		//List<Ad> allAdsByCategory = adService.findAllByCategory((long) 1);
+		//List<Ad> allAdsByUser = adService.findAllByUser((long)1);
+		//log.info("" + allAdsByUser.get(0).getTitle());
 		//log.info("" + allAds.size());
-		log.info("" + allAdsByCategory.get(0).getTitle());
+		//log.info("" + allAdsByCategory.get(0).getTitle());
 		return allAds;
 	}
 
