@@ -15,40 +15,18 @@ public class AdService {
 	@Autowired
 	private AdRepository adRepository;
 	
-	public List<Ad> findAll() {
-		return (List<Ad>) adRepository.findAll();
+	public List findAll() {
+		return adRepository.findAll();
+	}
+		
+	public List findByUser(long userId) {
+		return adRepository.findByUserId(userId);
 	}
 	
-	/**
-	 * Return with a list with all ad 
-	 * sorted by a category
-	 */
-	public List<Ad> findAllByCategory(long i) {
-		List<Ad> adList = (List<Ad>) adRepository.findAll();
-		List<Ad> adListByCategory = new ArrayList<Ad>();
-		for (Ad ad : adList) {
-			if(ad.getCategory().getId()== i) {
-				adListByCategory.add(ad);
-			}
-		}
-		return adListByCategory;
+	public List findByCategory(long categoryId) {
+		return adRepository.findByCategoryId(categoryId);
 	}
 	
-	/**
-	 * Return with a list with all ad 
-	 * sorted by a user
-	 */
-	public List<Ad> findAllByUser(long userId) {
-		List<Ad> adList = (List<Ad>) adRepository.findAll();
-		List<Ad> adListByUser = new ArrayList<Ad>();
-		for (Ad ad : adList) {
-			if(ad.getUser().getId()== userId) {
-				adListByUser.add(ad);
-			}
-		}
-		return adListByUser;
-	}
-
 	public AdRepository getAdRepository() {
 		return adRepository;
 	}

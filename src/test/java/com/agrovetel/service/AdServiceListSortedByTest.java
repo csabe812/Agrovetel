@@ -21,8 +21,8 @@ public class AdServiceListSortedByTest {
 	private AdService adService;
 	
 	@Test
-	public void testFindAllAdsByCategory1() {
-		List<Ad> ads = (List<Ad>) adService.findAllByCategory(1);
+	public void testFindAllAdByCategory1() {
+		List<Ad> ads = adService.findByCategory(1);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert(ads.size()==3);
@@ -30,8 +30,8 @@ public class AdServiceListSortedByTest {
 	}
 	
 	@Test
-	public void testFindAllAdsByCategory2() {
-		List<Ad> ads = (List<Ad>) adService.findAllByCategory(2);
+	public void testFindAllAdByCategory2() {
+		List<Ad> ads = adService.findByCategory(2);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert(ads.size()==1);
@@ -39,8 +39,8 @@ public class AdServiceListSortedByTest {
 	}
 	
 	@Test
-	public void testFindAllAdsByCategory3() {
-		List<Ad> ads = (List<Ad>) adService.findAllByCategory(3);
+	public void testFindAllAdByCategory3() {
+		List<Ad> ads = adService.findByCategory(3);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert(ads.size()==1);
@@ -48,8 +48,8 @@ public class AdServiceListSortedByTest {
 	}
 
 	@Test
-	public void testFindAllAdsByUser1() {
-		List<Ad> ads = (List<Ad>) adService.findAllByUser(1);
+	public void testFindAllAdByUser1() {
+		List<Ad> ads = adService.findByUser(1);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert(ads.size()==1);
@@ -57,8 +57,8 @@ public class AdServiceListSortedByTest {
 	}
 	
 	@Test
-	public void testFindAllAdsByUser2() {
-		List<Ad> ads = (List<Ad>) adService.findAllByUser(2);
+	public void testFindAllAdByUser2() {
+		List<Ad> ads = adService.findByUser(2);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert(ads.size()==2);
@@ -66,8 +66,8 @@ public class AdServiceListSortedByTest {
 	}
 	
 	@Test
-	public void testFindAllAdsByUser3() {
-		List<Ad> ads = (List<Ad>) adService.findAllByUser(3);
+	public void testFindAllAdByUser3() {
+		List<Ad> ads = adService.findByUser(3);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert(ads.size()==2);

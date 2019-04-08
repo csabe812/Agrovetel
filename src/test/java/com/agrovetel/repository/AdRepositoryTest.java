@@ -31,17 +31,17 @@ public class AdRepositoryTest {
 	
 	@Test
 	public void testFindAdById1() {
-		Optional<Ad> ad = adRepository.findById((long) 1);
+		Ad ad = adRepository.findById((long) 1);
 		assertNotNull(ad);
 	}
 	
 	@Test
 	public void testFindAdById2() {
-		Optional<Ad> ad = adRepository.findById((long) 1);
-		assert(ad.get().getTitle().equals("Ad1"));
-		assert(ad.get().getPrice()==20);
-		assert(ad.get().getHorsePower()==150);
-		assert(ad.get().getYearOfManufact()==1980);
+		Ad ad = adRepository.findById((long) 1);
+		assert(ad.getTitle().equals("Ad1"));
+		assert(ad.getPrice()==20);
+		assert(ad.getHorsePower()==150);
+		assert(ad.getYearOfManufact()==1980);
 			
 	}
 	
