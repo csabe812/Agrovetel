@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agrovetel.domain.Ad;
+import com.agrovetel.domain.Category;
 import com.agrovetel.repository.AdRepository;
 
 @Service
@@ -56,5 +57,18 @@ public class AdService {
 	public void setAdRepository(AdRepository adRepository) {
 		this.adRepository = adRepository;
 	};
+	
+	public List<Ad> findAllByCategoryId(long id){
+		return this.adRepository.findAllByCategoryId(id);
+	}
+	
+	/**
+	 * Find all ads by county id
+	 * @param id county_id
+	 * @return the list of the ads
+	 */
+	public List<Ad> findAllByCountyId(long id) {
+		return this.adRepository.findAllByCountyId(id);
+	}
 	
 }

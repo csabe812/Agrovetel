@@ -45,6 +45,15 @@ public class AdRepositoryTest {
 			
 	}
 	
+	/**
+	 * Created 3 testdata to the county (id = 1) so 3 ads need to be returned
+	 */
+	@Test
+	public void testFindAllByCountyId() {
+		List<Ad> ad = this.adRepository.findAllByCountyId(1);
+		assert(ad.size() == 3);
+	}
+	
 	
 
 }

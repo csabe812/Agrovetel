@@ -40,6 +40,9 @@ public class Ad {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "county_id")
+	private County county;
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manufacturer_id")
 	private Manufacturer manufacturer;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -57,7 +60,7 @@ public class Ad {
 
 	public Ad(long id, String title, @Min(0) double price, String description, LocalDateTime timeStamp,
 			boolean sellOrSearch, int horsePower, int yearOfManufact, Category category, Manufacturer manufacturer,
-			User user) {
+			User user, County county) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -70,6 +73,7 @@ public class Ad {
 		this.category = category;
 		this.manufacturer = manufacturer;
 		this.user = user;
+		this.county = county;
 	}
 
 	public Ad(String title, @Min(0) double price, LocalDateTime timeStamp, boolean sellOrSearch, User user) {
@@ -184,12 +188,20 @@ public class Ad {
 		this.user = user;
 	}
 
+	public County getCounty() {
+		return county;
+	}
+
+	public void setCounty(County county) {
+		this.county = county;
+	}
+
 	@Override
 	public String toString() {
 		return "Ad [id=" + id + ", title=" + title + ", price=" + price + ", description=" + description
 				+ ", timeStamp=" + timeStamp + ", sellOrSearch=" + sellOrSearch + ", horsePower=" + horsePower
-				+ ", yearOfManufact=" + yearOfManufact + ", category=" + category + ", manufacturer=" + manufacturer
-				+ ", user=" + user + "]";
+				+ ", yearOfManufact=" + yearOfManufact + ", category=" + category + ", county=" + county
+				+ ", manufacturer=" + manufacturer + ", user=" + user + "]";
 	}
 
 }
