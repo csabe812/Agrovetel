@@ -28,6 +28,11 @@ public class AdService {
 		return adRepository.findByCategoryId(categoryId);
 	}
 	
+	public Ad findById(long id) {
+		incrementNumberOfVisitors(id);
+		return adRepository.findById(id);
+	}
+	
 	public AdRepository getAdRepository() {
 		return adRepository;
 	}
@@ -38,6 +43,15 @@ public class AdService {
 	
 	public List<Ad> findAllByCategoryId(long id){
 		return this.adRepository.findAllByCategoryId(id);
+	}
+	
+	private void incrementNumberOfVisitors(long id) {
+		Ad ad = adRepository.findById(id);
+		int numberOfVisitors = ad.getNumberOfVisitors();
+		numberOfVisitors++;
+		ad.setNumberOfVisitors(numberOfVisitors);
+		adRepository.save(ad);
+		
 	}
 	
 	/**

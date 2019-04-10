@@ -48,6 +48,8 @@ public class Ad {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
+	@Column
+	private int numberOfVisitors;
 
 	public Ad() {
 
@@ -60,7 +62,7 @@ public class Ad {
 
 	public Ad(long id, String title, @Min(0) double price, String description, LocalDateTime timeStamp,
 			boolean sellOrSearch, int horsePower, int yearOfManufact, Category category, Manufacturer manufacturer,
-			User user, County county) {
+			User user, County county, int numberOfVisitors) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -74,6 +76,7 @@ public class Ad {
 		this.manufacturer = manufacturer;
 		this.user = user;
 		this.county = county;
+		this.numberOfVisitors = numberOfVisitors;
 	}
 
 	public Ad(String title, @Min(0) double price, LocalDateTime timeStamp, boolean sellOrSearch, User user) {
@@ -86,7 +89,7 @@ public class Ad {
 	}
 
 	public Ad(String title, @Min(0) double price, String description, LocalDateTime timeStamp, boolean sellOrSearch,
-			int horsePower, int yearOfManufact, Category category, Manufacturer manufacturer, User user) {
+			int horsePower, int yearOfManufact, Category category, Manufacturer manufacturer, User user, int numberOfVisitors) {
 		super();
 		this.title = title;
 		this.price = price;
@@ -98,6 +101,7 @@ public class Ad {
 		this.category = category;
 		this.manufacturer = manufacturer;
 		this.user = user;
+		this.numberOfVisitors = numberOfVisitors;
 	}
 
 	public long getId() {
@@ -196,12 +200,20 @@ public class Ad {
 		this.county = county;
 	}
 
+	public int getNumberOfVisitors() {
+		return numberOfVisitors;
+	}
+
+	public void setNumberOfVisitors(int numberOfVisitors) {
+		this.numberOfVisitors = numberOfVisitors;
+	}
+
 	@Override
 	public String toString() {
 		return "Ad [id=" + id + ", title=" + title + ", price=" + price + ", description=" + description
 				+ ", timeStamp=" + timeStamp + ", sellOrSearch=" + sellOrSearch + ", horsePower=" + horsePower
 				+ ", yearOfManufact=" + yearOfManufact + ", category=" + category + ", county=" + county
-				+ ", manufacturer=" + manufacturer + ", user=" + user + "]";
+				+ ", manufacturer=" + manufacturer + ", user=" + user + ", numberOfVisitors=" + numberOfVisitors + "]";
 	}
 
 }
