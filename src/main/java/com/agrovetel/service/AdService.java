@@ -45,13 +45,13 @@ public class AdService {
 		return this.adRepository.findAllByCategoryId(id);
 	}
 	
-	private void incrementNumberOfVisitors(long id) {
+	public Ad incrementNumberOfVisitors(long id) {
 		Ad ad = adRepository.findById(id);
 		int numberOfVisitors = ad.getNumberOfVisitors();
 		numberOfVisitors++;
 		ad.setNumberOfVisitors(numberOfVisitors);
 		adRepository.save(ad);
-		
+		return ad;
 	}
 	
 	/**
