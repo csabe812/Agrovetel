@@ -48,7 +48,8 @@ public class Ad {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-	@Column
+	@Column(nullable = false)
+	@Min(value = 0)
 	private int numberOfVisitors;
 
 	public Ad() {

@@ -16,7 +16,7 @@ public class AdService {
 	@Autowired
 	private AdRepository adRepository;
 	
-	public List findAll() {
+	public List<Ad> findAll() {
 		return adRepository.findAll();
 	}
 		
