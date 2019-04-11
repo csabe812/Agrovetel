@@ -1,5 +1,5 @@
 <!doctype html>
-<html layout:decorator="layouts/main">
+<html layout:decorate="layouts/main">
 <body>
 	<div layout:fragment="contentFragment">
 		<table class="table">
@@ -7,8 +7,9 @@
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">E-mail</th>
-					<th scope="col">Fullname</th>
+					<th scope="col">Full name</th>
 					<th scope="col">Enabled</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -17,8 +18,12 @@
 					<td th:text="${user.email}">Mark</td>
 					<td th:text="${user.fullname}">Mark</td>
 					<td th:text="${user.enabled}">Mark</td>
+					<td><a href="" th:href="@{/admin/users/{id}/edit(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+					<a href="" th:href="@{/admin/users/{id}/delete(id=${user.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a></td>
+					
 				</tr>
 			</tbody>
 		</table>
+	</div>
 </body>
 </html>

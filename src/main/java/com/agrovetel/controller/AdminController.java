@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.agrovetel.service.UserService;
@@ -33,6 +35,13 @@ public class AdminController {
 	public String showUsers(Model model) {
 		log.info("Getting users");
 		model.addAttribute("users", this.userService.findAll());
+		return "users";
+	}
+	
+	@GetMapping("/users/{id}/delete")
+	public String deleteUser(@PathVariable long id) {
+		log.info("started");
+		this.userService.deleteById(id);
 		return "users";
 	}
 }

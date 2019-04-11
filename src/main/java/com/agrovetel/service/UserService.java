@@ -21,5 +21,9 @@ public class UserService {
 	public List<User> findAll() {
 		return this.userRepository.findAll();
 	}
+	
+	public void deleteById(long id) {
+		this.userRepository.deleteById(id);
+	}
 
 }

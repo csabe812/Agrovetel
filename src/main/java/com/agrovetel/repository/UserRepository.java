@@ -11,4 +11,5 @@ import com.agrovetel.domain.User;
 public interface UserRepository extends CrudRepository<User, Long> {
 	User findById(long id);
 	List<User> findAll();
+	
 }
