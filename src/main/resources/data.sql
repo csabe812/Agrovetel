@@ -28,7 +28,7 @@ insert into categories(category_name) values ('Other');
 insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors)
 values ('Ad1', 20, 150, true, 1980, 1, 1, 1, 0);
 insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors)
-values ('Ad2', 25, 150, true, 1980, 1, 2, 1, 0);
+values ('Ad2', 25, 150, true, 1980, 1, 1, 1, 0);
 insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors)
 values ('Ad3', 35, 150, true, 1980, 1, 2, 1, 0);
 insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors)
