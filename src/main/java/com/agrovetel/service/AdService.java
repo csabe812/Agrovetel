@@ -2,14 +2,20 @@ package com.agrovetel.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agrovetel.domain.Ad;
+import com.agrovetel.domain.User;
 import com.agrovetel.repository.AdRepository;
 
 @Service
 public class AdService {
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private AdRepository adRepository;
@@ -68,6 +74,40 @@ public class AdService {
 
 	public void setAdRepository(AdRepository adRepository) {
 		this.adRepository = adRepository;
-	};
+	}
+
+	/**
+	 * Updates an ad
+	 * @param updatedAd
+	 */
+	public void updateAd(long id, Ad updatedAd) {
+		log.info("this iz the id: " + updatedAd.toString());
+		Ad ad = this.adRepository.findById(id);
+		log.info("Ad which will be updated: " + ad.toString());
+		log.info("Updated with: " + updatedAd.toString());
+		/*//ad.setSellOrSearch(updatedAd.isSellOrSearch());
+		ad.setTitle(updatedAd.getTitle());
+		ad.setDescription(updatedAd.getDescription());
+		//ad.setManufacturer(updatedAd.getManufacturer());
+		//ad.setCategory(updatedAd.getCategory());
+		ad.setYearOfManufact(updatedAd.getYearOfManufact());
+		ad.setHorsePower(updatedAd.getHorsePower());
+		//ad.setPrice(updatedAd.getPrice());
+		//ad.setCounty(updatedAd.getCounty());
+		//ad.setTimeStamp(updatedAd.getTimeStamp());*/
+		//this.adRepository.save(ad);
+	}
+
+	public void disableById(long id) {
+		Ad ad = this.adRepository.findById(id);
+		ad.setEnabled(false);
+		this.adRepository.save(ad);
+	}
+	
+	public void enableById(long id) {
+		Ad ad = this.adRepository.findById(id);
+		ad.setEnabled(true);
+		this.adRepository.save(ad);
+	}
 	
 }

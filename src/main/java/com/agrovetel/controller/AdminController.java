@@ -1,5 +1,7 @@
 package com.agrovetel.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.agrovetel.domain.Ad;
 import com.agrovetel.domain.User;
+import com.agrovetel.service.AdService;
 import com.agrovetel.service.UserService;
 
 @Controller
@@ -31,6 +35,13 @@ public class AdminController {
 	@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+	
+	private AdService adService;
+	
+	@Autowired
+	public void setAdService(AdService adService) {
+		this.adService = adService;
 	}
 
 	@GetMapping("/index")
@@ -52,6 +63,12 @@ public class AdminController {
 		return "users";
 	}
 
+	/**
+	 * Getting details of a user
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/users/{id}")
 	public String editUser(@PathVariable long id, Model model) {
 		log.info("Getting a user by id");
@@ -59,22 +76,113 @@ public class AdminController {
 		return "user";
 	}
 	
+	/**
+	 * 
+	 * Editing a user
+	 * @param id
+	 * @param updatedUser
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/users/{id}/update")
-	public String updateUser(@PathVariable long id, @Valid User updatedUser) {
+	public String updateUser(@PathVariable long id, @Valid User updatedUser, Model model) {
 		log.info("Updating user");
 		this.userService.updateUser(id, updatedUser);
+		model.addAttribute("users", this.userService.findAll());
 		return "users";
 	}
 	
 	/**
-	 * Deletes a user
+	 * Disable a user
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/users/{id}/delete")
-	public String deleteUser(@PathVariable long id) {
-		log.info("started");
-		this.userService.deleteById(id);
+	@GetMapping("/users/{id}/disable")
+	public String disableUser(@PathVariable long id, Model model) {
+		log.info("Disabled");
+		this.userService.disableById(id);
+		model.addAttribute("users", this.userService.findAll());
 		return "users";
+	}
+	
+	/**
+	 * Enable a user
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/users/{id}/enable")
+	public String enableUser(@PathVariable long id, Model model) {
+		log.info("Enabled");
+		this.userService.enableById(id);
+		model.addAttribute("users", this.userService.findAll());
+		return "users";
+	}
+	
+	/**
+	 * List of the ads
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/ads")
+	public String showAds(Model model) {
+		log.info("Getting ads");
+		model.addAttribute("ads", this.adService.findAll());
+		return "ads";
+	}
+	
+	/**
+	 * Getting details of a ad
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/ads/{id}")
+	public String editAd(@PathVariable long id, Model model) {
+		log.info("Getting a ad by id");
+		model.addAttribute("ad", this.adService.findById(id));
+		return "ad";
+	}
+	
+	/**
+	 * 
+	 * Editing an ad
+	 * @param id
+	 * @param updatedAd
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/ads/{id}/update")
+	public String updateAd(@PathVariable long id, @Valid Ad updatedAd, Model model) {
+		log.info("Updating ad");
+		this.adService.updateAd(id, updatedAd);
+		model.addAttribute("ads", this.adService.findAll());
+		return "ads";
+	}
+	
+	/**
+	 * Disable a user
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/ads/{id}/disable")
+	public String disableAd(@PathVariable long id, Model model) {
+		log.info("Disabled");
+		this.adService.disableById(id);
+		model.addAttribute("ads", this.adService.findAll());
+		return "ads";
+	}
+	
+	/**
+	 * Enable a user
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/ads/{id}/enable")
+	public String enableAd(@PathVariable long id, Model model) {
+		log.info("Enabled");
+		this.adService.enableById(id);
+		model.addAttribute("ads", this.adService.findAll());
+		return "ads";
 	}
 }

@@ -4,93 +4,47 @@
 	<div layout:fragment="contentFragment">
 
 		<div class="card">
-			<div class="row no-gutters">
-				<aside class="col-sm-5 border-right">
-					<article class="gallery-wrap">
-						<div class="img-big-wrap">
-							<div>
-								<a href="images/items/1.jpg" data-fancybox=""><img
-									src="images/items/1.jpg"></a>
-							</div>
+			<header class="card-header">
+				<h4 class="card-title mt-2">Edit ad</h4>
+			</header>
+			<article class="card-body">
+				<form th:object="${ad}">
+					<div class="form-row">
+						<!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Title</label> <input type="text" class="form-control"
+								th:field="*{title}" placeholder="">
 						</div>
-						<!-- slider-product.// -->
-						<div class="img-small-wrap">
-							<div class="item-gallery">
-								<img src="images/items/1.jpg">
-							</div>
-							<div class="item-gallery">
-								<img src="images/items/2.jpg">
-							</div>
-							<div class="item-gallery">
-								<img src="images/items/3.jpg">
-							</div>
-							<div class="item-gallery">
-								<img src="images/items/4.jpg">
-							</div>
+					</div>
+					<!-- form-row end.// -->
+					<div class="form-group">
+						<label>Description</label> <input type="email"
+							class="form-control" placeholder="" th:field="*{description}">
+						<span th:if="${#fields.hasErrors('description')}"
+							th:errors="*{description}" class="text-danger"></span>
+					</div>
+					<!-- form-row.// -->
+					<div class="form-group">
+						<div class="col form-group">
+							<label>Year of manufact</label> <input type="text"
+								class="form-control" th:field="*{yearOfManufact}" placeholder="">
 						</div>
-						<!-- slider-nav.// -->
-					</article>
-					<!-- gallery-wrap .end// -->
-				</aside>
-				<aside class="col-sm-7">
-					<article class="p-5">
-						<h3 class="title mb-3" th:text="${ad.title}">Original Version of Some product name</h3>
-
-						<div class="mb-3">
-							<var class="price h3 text-warning">
-								<span class="currency">US $</span><span class="num">1299</span>
-							</var>
-							<span>/per kg</span>
+					</div>
+					<div class="form-group">
+						<div class="col form-group">
+							<label>Horsepower</label> <input type="text" class="form-control"
+								th:field="*{horsePower}" placeholder="">
 						</div>
-						<!-- price-detail-wrap .// -->
-						<dl>
-							<dt>Description</dt>
-							<dd>
-								<p>Here goes description consectetur adipisicing elit, sed
-									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-							</dd>
-						</dl>
-						<dl class="row">
-							<dt class="col-sm-3">Model#</dt>
-							<dd class="col-sm-9">12345611</dd>
-
-							<dt class="col-sm-3">Color</dt>
-							<dd class="col-sm-9">Black and white</dd>
-
-							<dt class="col-sm-3">Delivery</dt>
-							<dd class="col-sm-9">Russia, USA, and Europe</dd>
-						</dl>
-						<div class="rating-wrap">
-
-							<ul class="rating-stars">
-								<li style="width: 80%" class="stars-active"><i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i></li>
-								<li><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i></li>
-							</ul>
-							<div class="label-rating">132 reviews</div>
-							<div class="label-rating">154 orders</div>
-						</div>
-						<!-- rating-wrap.// -->
-						<hr>
-						<!-- row.// -->
-						<hr>
-						<a href="#" class="btn  btn-primary"> Buy now </a> <a href="#"
-							class="btn  btn-outline-primary"> <i
-							class="fas fa-shopping-cart"></i> Add to cart
-						</a>
-					</article>
-					<!-- card-body.// -->
-				</aside>
-				<!-- col.// -->
-			</div>
-			<!-- row.// -->
+					</div>
+					<!-- form-group end.// -->
+					<div class="form-group">
+						<a href="" th:href="@{/admin/ads/{id}/update(id=${ad.id})}"
+							class="btn btn-primary"><span
+							class="glyphicon glyphicon-edit"></span> Update</a>
+					</div>
+				</form>
+			</article>
 		</div>
-		<!-- card.// -->
 
 	</div>
 </body>

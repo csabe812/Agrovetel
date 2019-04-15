@@ -35,11 +35,23 @@ public class UserService {
 	}
 	
 	/**
-	 * Deletes a user
+	 * Disable a user
 	 * @param id
 	 */
-	public void deleteById(long id) {
-		this.userRepository.deleteById(id);
+	public void disableById(long id) {
+		User user = this.userRepository.findById(id);
+		user.setEnabled(false);
+		this.userRepository.save(user);
+	}
+	
+	/**
+	 * Enable a user
+	 * @param id
+	 */
+	public void enableById(long id) {
+		User user = this.userRepository.findById(id);
+		user.setEnabled(true);
+		this.userRepository.save(user);
 	}
 
 	/**

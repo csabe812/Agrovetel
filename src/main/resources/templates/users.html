@@ -18,8 +18,11 @@
 					<td th:text="${user.email}">Mark</td>
 					<td th:text="${user.fullname}">Mark</td>
 					<td th:text="${user.enabled}">Mark</td>
-					<td><a href="" th:href="@{/admin/users/{id}(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-					<a href="" th:href="@{/admin/users/{id}/delete(id=${user.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a></td>
+					<td>
+					<a th:href="@{/admin/users/{id}/enable(id=${user.id})}" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span> Enable</a>
+					<a href="" th:href="@{/admin/users/{id}(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+					<a th:href="@{/admin/users/{id}/disable(id=${user.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Disable</a>
+					</td>
 					
 				</tr>
 			</tbody>

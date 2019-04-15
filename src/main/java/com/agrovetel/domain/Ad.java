@@ -51,6 +51,7 @@ public class Ad {
 	@Column(nullable = false)
 	@Min(value = 0)
 	private int numberOfVisitors;
+	private boolean enabled;
 
 	public Ad() {
 
@@ -90,7 +91,8 @@ public class Ad {
 	}
 
 	public Ad(String title, @Min(0) double price, String description, LocalDateTime timeStamp, boolean sellOrSearch,
-			int horsePower, int yearOfManufact, Category category, Manufacturer manufacturer, User user, int numberOfVisitors) {
+			int horsePower, int yearOfManufact, Category category, Manufacturer manufacturer, User user,
+			int numberOfVisitors) {
 		super();
 		this.title = title;
 		this.price = price;
@@ -207,6 +209,14 @@ public class Ad {
 
 	public void setNumberOfVisitors(int numberOfVisitors) {
 		this.numberOfVisitors = numberOfVisitors;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override
