@@ -23,7 +23,12 @@ public class UserService implements UserDetailsService {
 	private static final String LOGGED_IN_USER = "LOGGED_IN_USER";
 
 	private PasswordEncoder passwordEncoder;
-	
+
+	/**
+	 * Setter-based autowiring
+	 * 
+	 * @param userService
+	 */
 	@Autowired
 	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
@@ -31,6 +36,11 @@ public class UserService implements UserDetailsService {
 
 	private UserRepository userRepository;
 
+	/**
+	 * Setter-based autowiring
+	 * 
+	 * @param userService
+	 */
 	@Autowired
 	public void setUserRepository(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -38,26 +48,38 @@ public class UserService implements UserDetailsService {
 
 	private RoleRepository roleRepository;
 
+	/**
+	 * Setter-based autowiring
+	 * 
+	 * @param userService
+	 */
 	@Autowired
 	public void setRoleRepository(RoleRepository roleRepository) {
 		this.roleRepository = roleRepository;
 	}
-	
+
+	/**
+	 * Finding all the users
+	 * 
+	 * @return
+	 */
 	public List<User> findAll() {
 		return this.userRepository.findAll();
 	}
-	
+
 	/**
 	 * Finding a user by its id
+	 * 
 	 * @param id user id
 	 * @return found user
 	 */
 	public User findById(long id) {
 		return this.userRepository.findById(id);
 	}
-	
+
 	/**
 	 * Disable a user
+	 * 
 	 * @param id
 	 */
 	public void disableById(long id) {
@@ -65,9 +87,10 @@ public class UserService implements UserDetailsService {
 		user.setEnabled(false);
 		this.userRepository.save(user);
 	}
-	
+
 	/**
 	 * Enable a user
+	 * 
 	 * @param id
 	 */
 	public void enableById(long id) {
@@ -78,6 +101,7 @@ public class UserService implements UserDetailsService {
 
 	/**
 	 * Updates a user
+	 * 
 	 * @param updatedUser
 	 */
 	public void updateUser(long id, User updatedUser) {
@@ -91,11 +115,12 @@ public class UserService implements UserDetailsService {
 
 	/**
 	 * Register a user
+	 * 
 	 * @param user
 	 */
 	public void registerUser(User user) {
 		Role userRole = roleRepository.findByRole(LOGGED_IN_USER);
-		if(userRole != null) {
+		if (userRole != null) {
 			user.getRoles().add(userRole);
 		} else {
 			user.addRoles(LOGGED_IN_USER);
@@ -106,19 +131,25 @@ public class UserService implements UserDetailsService {
 		userRepository.save(user);
 	}
 
+	/**
+	 * Searching for a user
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("Searching for user...");
 		User user = findByEmail(username);
-		if(user == null ) {
+		if (user == null) {
 			throw new UsernameNotFoundException(username);
-		}
-		for(Role role : user.getRoles()) {
-			log.info("ROLE: " + role.getRole());
 		}
 		return new UserDetailsImpl(user);
 	}
-	
+
+	/**
+	 * Finding user by email
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public User findByEmail(String email) {
 		return this.userRepository.findByEmail(email);
 	}
