@@ -6,16 +6,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @EnableGlobalMethodSecurity(securedEnabled=true)
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
 	@Autowired
-	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("admin").password("{noop}admin").roles("ADMIN");
+	private UserDetailsService userService;
+	
+	@Autowired
+	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
+		auth.userDetailsService(userService);
 	}
 	
 	@Override
@@ -23,11 +25,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/fonts/**", "/plugins/**").permitAll();
 		http
 		.authorizeRequests()
+		    .antMatchers("/signup", "/registrate").permitAll()
 			.antMatchers("/admin/**").hasRole("ADMIN")
+			.antMatchers("/ads/**").hasRole("LOGGED_IN_USER")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
-			.loginPage("/login")
+			.loginPage("/login").defaultSuccessUrl("/")
 			.permitAll()
 			.and()
 			.logout()

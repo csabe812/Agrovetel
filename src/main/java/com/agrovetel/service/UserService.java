@@ -5,6 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.agrovetel.domain.Role;
@@ -13,7 +16,7 @@ import com.agrovetel.repository.RoleRepository;
 import com.agrovetel.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private static final String LOGGED_IN_USER = "LOGGED_IN_USER";
@@ -91,6 +94,21 @@ public class UserService {
 		}
 		user.setEnabled(true);
 		userRepository.save(user);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		log.info("Searching for user...");
+		User user = findByEmail(username);
+		if(user == null ) {
+			throw new UsernameNotFoundException(username);
+		}
+		log.info("Found user: " + user.toString());
+		return new UserDetailsImpl(user);
+	}
+	
+	public User findByEmail(String email) {
+		return this.userRepository.findByEmail(email);
 	}
 
 }
