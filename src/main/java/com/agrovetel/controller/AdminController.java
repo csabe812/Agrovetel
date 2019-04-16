@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.agrovetel.domain.Ad;
 import com.agrovetel.domain.User;
 import com.agrovetel.service.AdService;
+import com.agrovetel.service.ManufacturerService;
 import com.agrovetel.service.UserService;
 
 @Controller
@@ -25,6 +26,13 @@ public class AdminController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+	private ManufacturerService manufacturerService;
+	
+	@Autowired
+	public void setManufacturerService(ManufacturerService manufacturerService) {
+		this.manufacturerService = manufacturerService;
+	}
+	
 	private UserService userService;
 
 	/**
@@ -184,5 +192,24 @@ public class AdminController {
 		this.adService.enableById(id);
 		model.addAttribute("ads", this.adService.findAll());
 		return "ads";
+	}
+	
+	/**
+	 * List of the manufacturers
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/manufacturers")
+	public String showManufacturers(Model model) {
+		log.info("Getting manufacturers");
+		log.info("Size: " + this.manufacturerService.findAll().size());
+		model.addAttribute("manufacturers", this.manufacturerService.findAll());
+		return "manufacturers";
+	}
+	
+	@GetMapping("/manufacturers/new")
+	public String showNewManufacturerPage(){
+		return "manufacturer";
 	}
 }
