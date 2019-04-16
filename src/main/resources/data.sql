@@ -1,14 +1,21 @@
 insert into users(email, enabled, password, fullname)
-values('joe@doe.com', true, 'joepass', 'Joe Doe');
+values('joe@doe.com', true, 'joepass', 'JoeDoe');
 insert into users(email, enabled, password, fullname)
-values('jane@doe.com', false, 'janepass', 'Jane Doe');
+values('jane@doe.com', false, 'janepass', 'JaneDoe');
 insert into users(email, enabled, password, fullname)
-values('king@kong.com', true, 'kingkongpass', 'King Kong');
+values('king@kong.com', true, 'kingkongpass', 'KingKong');
 
 insert into roles(role) values ('GLOBAL_ADMIN');
 insert into roles(role) values ('LOGGED_IN_USER');
 insert into roles(role) values ('NOT_LOGGED_IN_USER');
 insert into roles(role) values ('ADMIN');
+
+insert into users_roles(user_id, role_id) values (1, 1);
+insert into users_roles(user_id, role_id) values (1, 2);
+insert into users_roles(user_id, role_id) values (1, 3);
+insert into users_roles(user_id, role_id) values (1, 4);
+insert into users_roles(user_id, role_id) values (2, 2);
+insert into users_roles(user_id, role_id) values (3, 3);
 
 insert into counties(county_name) values ('Békés megye');
 insert into counties(county_name) values ('Csongrád megye');

@@ -7,13 +7,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.agrovetel.domain.Role;
 import com.agrovetel.domain.User;
+import com.agrovetel.repository.RoleRepository;
 import com.agrovetel.repository.UserRepository;
 
 @Service
 public class UserService {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+	private static final String LOGGED_IN_USER = "LOGGED_IN_USER";
+	
 	private UserRepository userRepository;
 
 	@Autowired
@@ -21,6 +25,13 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
+	private RoleRepository roleRepository;
+
+	@Autowired
+	public void setRoleRepository(RoleRepository roleRepository) {
+		this.roleRepository = roleRepository;
+	}
+	
 	public List<User> findAll() {
 		return this.userRepository.findAll();
 	}
@@ -65,6 +76,21 @@ public class UserService {
 		user.setEmail(updatedUser.getEmail());
 		user.setFullname(updatedUser.getFullname());
 		this.userRepository.save(updatedUser);
+	}
+
+	/**
+	 * Register a user
+	 * @param user
+	 */
+	public void registerUser(User user) {
+		Role userRole = roleRepository.findByRole(LOGGED_IN_USER);
+		if(userRole != null) {
+			user.getRoles().add(userRole);
+		} else {
+			user.addRoles(LOGGED_IN_USER);
+		}
+		user.setEnabled(true);
+		userRepository.save(user);
 	}
 
 }

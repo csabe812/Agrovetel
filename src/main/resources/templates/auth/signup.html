@@ -8,7 +8,7 @@
 					<div class="card card-signin my-5">
 						<div class="card-body">
 							<h5 class="card-title text-center">Sign up</h5>
-							<form name="login" th:action="@{/login}" method="post"
+							<form name="login" th:action="@{/registrate}" method="post"
 								class="form-signin">
 								<div id="err" th:if="${param.error}" class="alert alert-danger">Username
 									or password not ok</div>
@@ -16,7 +16,11 @@
 									logout</div>
 								<label for="username" class="sr-only">Username</label> <input
 									type="text" id="username" name="username" class="form-control"
-									placeholder="Username" required="true" /> <label
+									placeholder="Username" required="true" />
+									<label for="fullname" class="sr-only">Full name</label> <input
+									type="text" id="fullname" name="fullname" class="form-control"
+									placeholder="Full name" required="true" />
+									<label
 									for="password" class="sr-only">Password</label> <input
 									type="password" id="password" name="password"
 									class="form-control" placeholder="Password" required="true" />
