@@ -2,6 +2,8 @@ package com.agrovetel.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +40,9 @@ public class MainConroller {
 	 */
 	@PostMapping("/registrate")
 	public String showAds(@ModelAttribute User user) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		log.info("==========");
+		log.info(auth.getAuthorities().toString());
 		log.info("User will be registered");
 		log.info(user.toString());
 		userService.registerUser(user);

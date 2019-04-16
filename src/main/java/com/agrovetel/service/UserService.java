@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.agrovetel.domain.Role;
@@ -20,7 +21,14 @@ public class UserService implements UserDetailsService {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private static final String LOGGED_IN_USER = "LOGGED_IN_USER";
+
+	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
+
 	private UserRepository userRepository;
 
 	@Autowired
@@ -93,6 +101,8 @@ public class UserService implements UserDetailsService {
 			user.addRoles(LOGGED_IN_USER);
 		}
 		user.setEnabled(true);
+		log.info(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 	}
 
@@ -103,7 +113,9 @@ public class UserService implements UserDetailsService {
 		if(user == null ) {
 			throw new UsernameNotFoundException(username);
 		}
-		log.info("Found user: " + user.toString());
+		for(Role role : user.getRoles()) {
+			log.info("ROLE: " + role.getRole());
+		}
 		return new UserDetailsImpl(user);
 	}
 	

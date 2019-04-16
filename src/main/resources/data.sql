@@ -1,4 +1,6 @@
 insert into users(email, enabled, password, fullname)
+values('admin', true, '$2a$10$5vO5XjervV.7h1KJE8XQSes5WQOnAyP0OS6LLMwpFA2tEV5OrZDA6', 'admin');
+insert into users(email, enabled, password, fullname)
 values('joe@doe.com', true, 'joepass', 'JoeDoe');
 insert into users(email, enabled, password, fullname)
 values('jane@doe.com', false, 'janepass', 'JaneDoe');
