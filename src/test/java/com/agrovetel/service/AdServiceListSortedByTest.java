@@ -40,7 +40,7 @@ public class AdServiceListSortedByTest {
 
 	@Test
 	public void createNewAdTest() {
-		Category category = categoryService.findById(1);
+		Category category = categoryService.findCategoryById(1);
 		Manufacturer manufacturer = manufacturerService.findById(1);
 		User user = userService.findById(1);
 		Ad ad = new Ad("Valami", 25.00, "Valami leírás", LocalDateTime.now(), true, 150, 2018, category, manufacturer,
@@ -74,7 +74,7 @@ public class AdServiceListSortedByTest {
 		ad.setTitle("Új cím");
 		ad.setUser(userService.findById(3));
 		ad.setYearOfManufact(2000);
-		ad.setCategory(categoryService.findById(4));
+		ad.setCategory(categoryService.findCategoryById(4));
 		adService.updateCreateAd(ad);
 		assert (ad.getDescription().equals("Most változtatom meg"));
 		assert (ad.getHorsePower() == 200);

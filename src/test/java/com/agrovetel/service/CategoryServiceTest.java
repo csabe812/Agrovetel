@@ -22,7 +22,7 @@ public class CategoryServiceTest {
 	
 	@Test
 	public void testFindAll() {
-		List<Category> categories = categoryService.findAll();
+		List<Category> categories = categoryService.findAllCategory();
 		assertNotNull(categories);
 		assertTrue(!categories.isEmpty());
 		assert(categories.size()==4);	
@@ -30,14 +30,20 @@ public class CategoryServiceTest {
 	
 	@Test
 	public void testFindById2() {
-		Category category = categoryService.findById(2);
+		Category category = categoryService.findCategoryById(2);
 		assert(category.getCategoryName().equals("Tyre"));
 	}
 	
 	@Test
 	public void testFindById3() {
-		Category category = categoryService.findById(3);
+		Category category = categoryService.findCategoryById(3);
 		assert(category.getCategoryName().equals("Cultivator"));
+	}
+	
+	@Test
+	public void testDisableCategoryById4() {
+		categoryService.disableCategoryById(4);
+		assert(categoryService.findCategoryById(4).isEnabled() == false);
 	}
 
 }

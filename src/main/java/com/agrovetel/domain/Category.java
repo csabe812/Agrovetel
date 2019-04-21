@@ -21,6 +21,9 @@ public class Category {
 	@Column
 	private String categoryName;
 
+	@Column
+	private boolean enabled;
+
 	@OneToMany(mappedBy = "category")
 	private List<Ad> ads;
 
@@ -63,9 +66,17 @@ public class Category {
 		this.ads = ads;
 	}
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", categoryName=" + categoryName + ", ads=" + ads + "]";
+		return "Category [id=" + id + ", categoryName=" + categoryName + ", enabled=" + enabled + ", ads=" + ads + "]";
 	}
 
 }

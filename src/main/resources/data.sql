@@ -29,10 +29,10 @@ insert into manufacturers(manufacturer_name) values ('John Deere');
 insert into manufacturers(manufacturer_name) values ('New Holland');
 insert into manufacturers(manufacturer_name) values ('Yto');
 
-insert into categories(category_name) values ('Tractor');
-insert into categories(category_name) values ('Tyre');
-insert into categories(category_name) values ('Cultivator');
-insert into categories(category_name) values ('Other');
+insert into categories(category_name, enabled) values ('Tractor', true);
+insert into categories(category_name, enabled) values ('Tyre', true);
+insert into categories(category_name, enabled) values ('Cultivator', true);
+insert into categories(category_name, enabled) values ('Other', true);
 
 insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
 values ('Ad1', 20, 150, true, 1980, 1, 1, 1, 0, true);

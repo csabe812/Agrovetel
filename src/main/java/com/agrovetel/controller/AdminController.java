@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.agrovetel.domain.Ad;
+import com.agrovetel.domain.Category;
 import com.agrovetel.domain.User;
 import com.agrovetel.service.AdService;
+import com.agrovetel.service.CategoryService;
 import com.agrovetel.service.ManufacturerService;
 import com.agrovetel.service.UserService;
 
@@ -57,6 +59,18 @@ public class AdminController {
 	@Autowired
 	public void setAdService(AdService adService) {
 		this.adService = adService;
+	}
+	
+	private CategoryService categoryService;
+
+	/**
+	 * Setter-based autowiring
+	 * 
+	 * @param categoryService
+	 */
+	@Autowired
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
 	}
 
 	/**
@@ -237,4 +251,87 @@ public class AdminController {
 	public String showNewManufacturerPage() {
 		return "manufacturer";
 	}
+	
+	/**
+	 * List of the categories
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/categories")
+	public String showCategories(Model model) {
+		log.info("Getting categories");
+		model.addAttribute("categories", this.categoryService.findAllCategory());
+		return "categories";
+	}
+	
+	/**
+	 * Getting details of a category
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/categories/{id}")
+	public String editCategory(@PathVariable long id, Model model) {
+		log.info("Getting a category by id");
+		model.addAttribute("category", this.categoryService.findCategoryById(id));
+		return "category";
+	}
+	
+	/**
+	 * 
+	 * Editing a category
+	 * 
+	 * @param id
+	 * @param updatedCategory
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/categories/{id}/update")
+	public String updateCategory(@PathVariable long id, @Valid Category updatedCategory, Model model) {
+		log.info("Updating category");
+		this.categoryService.updateCategory(id, updatedCategory);
+		model.addAttribute("categories", this.categoryService.findAllCategory());
+		return "categories";
+	}
+	
+	/**
+	 * Disable a category
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/categories/{id}/disable")
+	public String disableCategory(@PathVariable long id, Model model) {
+		log.info("Disabled");
+		this.categoryService.disableCategoryById(id);
+		model.addAttribute("categories", this.categoryService.findAllCategory());
+		return "categories";
+	}
+	
+	/**
+	 * Enable a category
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/categories/{id}/enable")
+	public String enableCategory(@PathVariable long id, Model model) {
+		log.info("Enabled");
+		this.categoryService.enableCategoryById(id);
+		model.addAttribute("categories", this.categoryService.findAllCategory());
+		return "categories";
+	}
+	
+	/**
+	 * Displaying add new categories page
+	 * 
+	 * @return
+	 */
+	@GetMapping("/categories/new")
+	public String showNewcategoryPage() {
+		return "category";
+	}
+
 }

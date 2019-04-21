@@ -11,7 +11,7 @@ import com.agrovetel.domain.Ad;
 import com.agrovetel.repository.AdRepository;
 
 /**
- * A service class for finding categori(es)
+ * A service class for finding ad(s)
  * 
  * @author kafr007
  *
@@ -130,18 +130,16 @@ public class AdService {
 		Ad ad = this.adRepository.findById(id);
 		log.info("Ad which will be updated: " + ad.toString());
 		log.info("Updated with: " + updatedAd.toString());
-		/*
-		 * //ad.setSellOrSearch(updatedAd.isSellOrSearch());
-		 * ad.setTitle(updatedAd.getTitle());
-		 * ad.setDescription(updatedAd.getDescription());
-		 * //ad.setManufacturer(updatedAd.getManufacturer());
-		 * //ad.setCategory(updatedAd.getCategory());
-		 * ad.setYearOfManufact(updatedAd.getYearOfManufact());
-		 * ad.setHorsePower(updatedAd.getHorsePower());
-		 * //ad.setPrice(updatedAd.getPrice()); //ad.setCounty(updatedAd.getCounty());
-		 * //ad.setTimeStamp(updatedAd.getTimeStamp());
-		 */
-		// this.adRepository.save(ad);
+		ad.setSellOrSearch(updatedAd.isSellOrSearch());
+		ad.setTitle(updatedAd.getTitle());
+		ad.setDescription(updatedAd.getDescription());
+		ad.setManufacturer(updatedAd.getManufacturer());
+		ad.setCategory(updatedAd.getCategory());
+		ad.setYearOfManufact(updatedAd.getYearOfManufact());
+		ad.setHorsePower(updatedAd.getHorsePower());
+		ad.setPrice(updatedAd.getPrice()); //ad.setCounty(updatedAd.getCounty());
+		ad.setTimeStamp(updatedAd.getTimeStamp());
+		this.adRepository.save(ad);
 	}
 
 	/**

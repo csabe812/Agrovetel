@@ -1,5 +1,7 @@
 package com.agrovetel.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.agrovetel.domain.Ad;
+import com.agrovetel.domain.User;
 import com.agrovetel.service.AdService;
 
 @Controller
@@ -37,5 +40,4 @@ public class AdController {
 		model.addAttribute("ad", this.adService.incrementNumberOfVisitors(id));
 		return "ad";
 	}
-
 }
