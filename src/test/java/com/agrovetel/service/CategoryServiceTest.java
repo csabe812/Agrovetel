@@ -31,13 +31,13 @@ public class CategoryServiceTest {
 	@Test
 	public void testFindById2() {
 		Category category = categoryService.findCategoryById(2);
-		assert(category.getCategoryName().equals("Tyre"));
+		assert(category.getName().equals("Tyre"));
 	}
 	
 	@Test
 	public void testFindById3() {
 		Category category = categoryService.findCategoryById(3);
-		assert(category.getCategoryName().equals("Cultivator"));
+		assert(category.getName().equals("Cultivator"));
 	}
 	
 	@Test

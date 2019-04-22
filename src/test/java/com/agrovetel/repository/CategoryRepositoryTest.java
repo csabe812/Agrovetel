@@ -32,14 +32,14 @@ public class CategoryRepositoryTest {
 	@Test
 	public void testById1() {
 		Category category = categoryRepository.findById(1);
-		assert(category.getCategoryName().equals("Tractor"));
+		assert(category.getName().equals("Tractor"));
 		assert(category.isEnabled()== true);
 	}
 	
 	@Test
 	public void testById4() {
 		Category category = categoryRepository.findById(4);
-		assert(category.getCategoryName().equals("Other"));
+		assert(category.getName().equals("Other"));
 		assert(category.isEnabled()== true);
 	}
 

@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.agrovetel.domain.Ad;
 import com.agrovetel.domain.Category;
@@ -289,11 +292,11 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/categories/{id}/update")
-	public String updateCategory(@PathVariable long id, @Valid Category updatedCategory, Model model) {
+	public String updateCategory(@PathVariable long id, @ModelAttribute("category") Category updatedCategory, Model model) {
 		log.info("Updating category");
 		this.categoryService.updateCategory(id, updatedCategory);
 		model.addAttribute("categories", this.categoryService.findAllCategory());
-		return "categories";
+		return "redirect:/admin/categories";
 	}
 	
 	/**
@@ -307,7 +310,7 @@ public class AdminController {
 		log.info("Disabled");
 		this.categoryService.disableCategoryById(id);
 		model.addAttribute("categories", this.categoryService.findAllCategory());
-		return "categories";
+		return "redirect:/admin/categories";
 	}
 	
 	/**
@@ -321,7 +324,7 @@ public class AdminController {
 		log.info("Enabled");
 		this.categoryService.enableCategoryById(id);
 		model.addAttribute("categories", this.categoryService.findAllCategory());
-		return "categories";
+		return "redirect:/admin/categories";
 	}
 	
 	/**
@@ -330,8 +333,11 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/categories/new")
-	public String showNewcategoryPage() {
+	public String showNewcategoryPage(@Valid Category category, Model model) {
+		this.categoryService.updateCreateCategory(category);
+		model.addAttribute("categories", this.categoryService.findAllCategory());
 		return "category";
 	}
+
 
 }

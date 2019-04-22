@@ -19,7 +19,7 @@ public class Category {
 	private long id;
 
 	@Column
-	private String categoryName;
+	private String name;
 
 	@Column
 	private boolean enabled;
@@ -42,20 +42,20 @@ public class Category {
 	public Category(long id, String categoryName) {
 		super();
 		this.id = id;
-		this.categoryName = categoryName;
+		this.name = categoryName;
 	}
 
 	public Category(String categoryName) {
 		super();
-		this.categoryName = categoryName;
+		this.name = categoryName;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setName(String categoryName) {
+		this.name = categoryName;
 	}
 
 	public List<Ad> getAds() {
@@ -76,7 +76,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", categoryName=" + categoryName + ", enabled=" + enabled + ", ads=" + ads + "]";
+		return "Category [id=" + id + ", categoryName=" + name + ", enabled=" + enabled + ", ads=" + ads + "]";
 	}
 
 }

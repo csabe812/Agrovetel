@@ -2,6 +2,10 @@ package com.agrovetel.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,8 @@ import com.agrovetel.repository.CategoryRepository;
 @Service
 public class CategoryService {
 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	private CategoryRepository categoryRepository;
 
 	/**
@@ -67,7 +73,8 @@ public class CategoryService {
 	 */
 	public void updateCategory(long id, Category updatedCategory) {
 		Category category = this.categoryRepository.findById(id);
-		category.setCategoryName(updatedCategory.getCategoryName());
+		log.info("" + updatedCategory.getName());
+		category.setName(updatedCategory.getName());
 		this.categoryRepository.save(category);
 	}
 
@@ -101,5 +108,7 @@ public class CategoryService {
 		category.setEnabled(true);
 		this.categoryRepository.save(category);
 	}
+
+	
 
 }
