@@ -170,7 +170,7 @@ public class AdminController {
 		model.addAttribute("ads", this.adService.findAll());
 		return "ads";
 	}
-
+	
 	/**
 	 * Getting details of a ad
 	 * 
@@ -196,8 +196,8 @@ public class AdminController {
 	 */
 	@GetMapping("/ads/{id}/update")
 	public String updateAd(@PathVariable long id, @ModelAttribute("updatedAd") Ad updatedAd, Model model) {
-		log.info("Updating ad LOL: " + updatedAd.toString());
-		// this.adService.updateAd(id, updatedAd);
+		log.info("Updating ad: " + updatedAd.toString());
+		this.adService.updateAd(id, updatedAd);
 		model.addAttribute("ads", this.adService.findAll());
 		return "redirect:/admin/ads";
 	}

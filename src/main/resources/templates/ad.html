@@ -8,7 +8,7 @@
 				<h4 class="card-title mt-2">Edit ad</h4>
 			</header>
 			<article class="card-body">
-				<form th:object="${ad}">
+				<form th:object="${updatedAd}">
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
@@ -17,28 +17,31 @@
 						</div>
 					</div>
 					<!-- form-row end.// -->
-					<div class="form-group">
-						<label>Description</label> <input type="email"
-							class="form-control" placeholder="" th:field="*{description}">
-						<span th:if="${#fields.hasErrors('description')}"
-							th:errors="*{description}" class="text-danger"></span>
-					</div>
-					<!-- form-row.// -->
-					<div class="form-group">
+					<div class="form-row">
+						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Year of manufact</label> <input type="text"
-								class="form-control" th:field="*{yearOfManufact}" placeholder="">
+							<label>Title</label> <input type="text" class="form-control"
+								th:field="*{description}" placeholder="">
 						</div>
 					</div>
-					<div class="form-group">
+					<!-- form-row.// -->
+					<div class="form-row">
+						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Horsepower</label> <input type="text" class="form-control"
+							<label>Title</label> <input type="text" class="form-control"
+								th:field="*{yearOfManufact}" placeholder="">
+						</div>
+					</div>
+					<div class="form-row">
+						<!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Title</label> <input type="text" class="form-control"
 								th:field="*{horsePower}" placeholder="">
 						</div>
 					</div>
 					<!-- form-group end.// -->
 					<div class="form-group">
-						<a href="" th:href="@{/admin/ads/{id}/update(id=${ad.id})}"
+						<a href="" th:href="@{/admin/ads/{id}/update(id=${updatedAd.id})}"
 							class="btn btn-primary"><span
 							class="glyphicon glyphicon-edit"></span> Update</a>
 					</div>

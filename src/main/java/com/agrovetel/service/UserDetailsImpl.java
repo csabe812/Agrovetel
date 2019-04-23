@@ -60,8 +60,8 @@ public class UserDetailsImpl implements UserDetails {
 	 */
 	@Override
 	public String getUsername() {
-		System.out.println("email: ");
-		System.out.println(user.getEmail());
+        //System.out.println("email: ");
+        //System.out.println(user.getEmail());
 		return user.getEmail();
 	}
 
