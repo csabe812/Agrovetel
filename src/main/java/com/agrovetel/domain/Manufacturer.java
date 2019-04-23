@@ -21,6 +21,9 @@ public class Manufacturer {
 	@Column
 	private String manufacturerName;
 
+	@Column
+	private boolean enabled;
+
 	@OneToMany(mappedBy = "manufacturer")
 	private List<Ad> ads;
 
@@ -63,9 +66,18 @@ public class Manufacturer {
 		this.ads = ads;
 	}
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
-		return "Manufacturer [id=" + id + ", manufacturerName=" + manufacturerName + ", ads=" + ads + "]";
+		return "Manufacturer [id=" + id + ", manufacturerName=" + manufacturerName + ", enabled=" + enabled + ", ads="
+				+ ads + "]";
 	}
 
 }

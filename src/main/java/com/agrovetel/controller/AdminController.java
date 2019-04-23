@@ -10,12 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.agrovetel.domain.Ad;
 import com.agrovetel.domain.Category;
+import com.agrovetel.domain.Manufacturer;
 import com.agrovetel.domain.User;
 import com.agrovetel.service.AdService;
 import com.agrovetel.service.CategoryService;
@@ -63,7 +62,7 @@ public class AdminController {
 	public void setAdService(AdService adService) {
 		this.adService = adService;
 	}
-	
+
 	private CategoryService categoryService;
 
 	/**
@@ -128,7 +127,7 @@ public class AdminController {
 		log.info("Updating user");
 		this.userService.updateUser(id, updatedUser);
 		model.addAttribute("users", this.userService.findAll());
-		return "users";
+		return "redirect:/admin/users";
 	}
 
 	/**
@@ -142,7 +141,7 @@ public class AdminController {
 		log.info("Disabled");
 		this.userService.disableById(id);
 		model.addAttribute("users", this.userService.findAll());
-		return "users";
+		return "redirect:/admin/users";
 	}
 
 	/**
@@ -156,7 +155,7 @@ public class AdminController {
 		log.info("Enabled");
 		this.userService.enableById(id);
 		model.addAttribute("users", this.userService.findAll());
-		return "users";
+		return "redirect:/admin/users";
 	}
 
 	/**
@@ -182,7 +181,7 @@ public class AdminController {
 	@GetMapping("/ads/{id}")
 	public String editAd(@PathVariable long id, Model model) {
 		log.info("Getting a ad by id");
-		model.addAttribute("ad", this.adService.findById(id));
+		model.addAttribute("updatedAd", this.adService.findById(id));
 		return "ad";
 	}
 
@@ -196,15 +195,15 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/ads/{id}/update")
-	public String updateAd(@PathVariable long id, @Valid Ad updatedAd, Model model) {
-		log.info("Updating ad");
-		this.adService.updateAd(id, updatedAd);
+	public String updateAd(@PathVariable long id, @ModelAttribute("updatedAd") Ad updatedAd, Model model) {
+		log.info("Updating ad LOL: " + updatedAd.toString());
+		// this.adService.updateAd(id, updatedAd);
 		model.addAttribute("ads", this.adService.findAll());
-		return "ads";
+		return "redirect:/admin/ads";
 	}
 
 	/**
-	 * Disable a user
+	 * Disable an ad
 	 * 
 	 * @param id
 	 * @return
@@ -214,11 +213,11 @@ public class AdminController {
 		log.info("Disabled");
 		this.adService.disableById(id);
 		model.addAttribute("ads", this.adService.findAll());
-		return "ads";
+		return "redirect:/admin/ads";
 	}
 
 	/**
-	 * Enable a user
+	 * Enable an ad
 	 * 
 	 * @param id
 	 * @return
@@ -228,7 +227,7 @@ public class AdminController {
 		log.info("Enabled");
 		this.adService.enableById(id);
 		model.addAttribute("ads", this.adService.findAll());
-		return "ads";
+		return "redirect:/admin/ads";
 	}
 
 	/**
@@ -246,15 +245,70 @@ public class AdminController {
 	}
 
 	/**
+	 * Getting details of a manufacturer
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/manufacturers/{id}")
+	public String editManufacturer(@PathVariable long id, Model model) {
+		log.info("Getting a manufacturer by id");
+		Manufacturer manufacturer = this.manufacturerService.findById(id);
+		log.info("FOUND: " + manufacturer.toString());
+		model.addAttribute("manufacturer", manufacturer);
+		return "manufacturer";
+	}
+
+	@GetMapping("/manufacturers/{id}/update")
+	public String updateManufacturer(@PathVariable long id,
+			@ModelAttribute("manufacturer") Manufacturer updatedManufacturer, Model model) {
+		log.info("Updating manufacturer: " + updatedManufacturer.toString());
+		this.manufacturerService.updateManufacturer(id, updatedManufacturer);
+		model.addAttribute("categories", this.categoryService.findAllCategory());
+		return "redirect:/admin/manufacturers";
+	}
+
+	/**
+	 * Disable a category
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/manufacturers/{id}/disable")
+	public String disableManufacturer(@PathVariable long id, Model model) {
+		log.info("Disabled manufacturer");
+		this.manufacturerService.disableManufacturerById(id);
+		model.addAttribute("manufacturers", this.manufacturerService.findAll());
+		return "redirect:/admin/manufacturers";
+	}
+
+	/**
+	 * Enable a category
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/manufacturers/{id}/enable")
+	public String enableManufacturer(@PathVariable long id, Model model) {
+		log.info("Enabled manufacturer");
+		this.manufacturerService.enableManufacturerById(id);
+		model.addAttribute("manufacturers", this.manufacturerService.findAll());
+		return "redirect:/admin/manufacturers";
+	}
+
+	/**
 	 * Displaying add new manufacturer page
 	 * 
 	 * @return
 	 */
 	@GetMapping("/manufacturers/new")
-	public String showNewManufacturerPage() {
+	public String showNewManufacturerPage(@Valid Manufacturer manufacturer, Model model) {
+		this.manufacturerService.updateCreateManufacturer(manufacturer);
+		model.addAttribute("manufacturers", this.manufacturerService.findAll());
 		return "manufacturer";
 	}
-	
+
 	/**
 	 * List of the categories
 	 * 
@@ -267,7 +321,7 @@ public class AdminController {
 		model.addAttribute("categories", this.categoryService.findAllCategory());
 		return "categories";
 	}
-	
+
 	/**
 	 * Getting details of a category
 	 * 
@@ -281,7 +335,7 @@ public class AdminController {
 		model.addAttribute("category", this.categoryService.findCategoryById(id));
 		return "category";
 	}
-	
+
 	/**
 	 * 
 	 * Editing a category
@@ -292,13 +346,14 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/categories/{id}/update")
-	public String updateCategory(@PathVariable long id, @ModelAttribute("category") Category updatedCategory, Model model) {
-		log.info("Updating category");
+	public String updateCategory(@PathVariable long id, @ModelAttribute("category") Category updatedCategory,
+			Model model) {
+		log.info("Updating category: " + updatedCategory.toString());
 		this.categoryService.updateCategory(id, updatedCategory);
 		model.addAttribute("categories", this.categoryService.findAllCategory());
 		return "redirect:/admin/categories";
 	}
-	
+
 	/**
 	 * Disable a category
 	 * 
@@ -312,7 +367,7 @@ public class AdminController {
 		model.addAttribute("categories", this.categoryService.findAllCategory());
 		return "redirect:/admin/categories";
 	}
-	
+
 	/**
 	 * Enable a category
 	 * 
@@ -326,7 +381,7 @@ public class AdminController {
 		model.addAttribute("categories", this.categoryService.findAllCategory());
 		return "redirect:/admin/categories";
 	}
-	
+
 	/**
 	 * Displaying add new categories page
 	 * 
@@ -338,6 +393,5 @@ public class AdminController {
 		model.addAttribute("categories", this.categoryService.findAllCategory());
 		return "category";
 	}
-
 
 }

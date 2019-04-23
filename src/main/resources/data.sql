@@ -23,24 +23,24 @@ insert into counties(county_name) values ('Békés megye');
 insert into counties(county_name) values ('Csongrád megye');
 insert into counties(county_name) values ('Zala megye');
 
-insert into manufacturers(manufacturer_name) values ('MTZ');
-insert into manufacturers(manufacturer_name) values ('Zetor');
-insert into manufacturers(manufacturer_name) values ('John Deere');
-insert into manufacturers(manufacturer_name) values ('New Holland');
-insert into manufacturers(manufacturer_name) values ('Yto');
+insert into manufacturers(manufacturer_name, enabled) values ('MTZ', true);
+insert into manufacturers(manufacturer_name, enabled) values ('Zetor', true);
+insert into manufacturers(manufacturer_name, enabled) values ('John Deere', true);
+insert into manufacturers(manufacturer_name, enabled) values ('New Holland', true);
+insert into manufacturers(manufacturer_name, enabled) values ('Yto', false);
 
 insert into categories(name, enabled) values ('Tractor', true);
 insert into categories(name, enabled) values ('Tyre', true);
 insert into categories(name, enabled) values ('Cultivator', true);
 insert into categories(name, enabled) values ('Other', true);
 
-insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad1', 20, 150, true, 1980, 1, 1, 1, 0, true);
-insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad2', 25, 150, true, 1980, 1, 1, 1, 0, true);
-insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad3', 35, 150, true, 1980, 1, 2, 1, 0, true);
-insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad4', 30, 3, false, 2019, 2, 3, 2, 0, true);
-insert into ads (title, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad5', 220, 1150, true, 1994, 3, 3, 3, 0, true);
+insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
+values ('Ad1', 'Ad1 description', 20, 150, true, 1980, 1, 1, 1, 0, true);
+insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
+values ('Ad2', 'Ad2 description', 25, 150, true, 1980, 1, 1, 1, 0, true);
+insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
+values ('Ad3', 'Ad3 description', 35, 150, true, 1980, 1, 2, 1, 0, true);
+insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
+values ('Ad4', 'Ad4 description', 30, 3, false, 2019, 2, 3, 2, 0, true);
+insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
+values ('Ad5', 'Ad5 description', 220, 1150, true, 1994, 3, 3, 3, 0, true);
