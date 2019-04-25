@@ -36,6 +36,8 @@ public class AdServiceTest {
 
 	@Mock
 	List<Ad> adList;
+	
+	Ad ad;
 
 	@Before
 	public void init() {

@@ -57,7 +57,7 @@ public class AdServiceListSortedByTest {
 		log.info("" + ad.getTimeStamp());
 		assert (ad.getTitle().equals("Valami"));
 		assert (ad.getYearOfManufact() == 2018);
-		assert (ad.getUser().getFullname().equals("Joe Doe"));
+		assert (ad.getUser().getFullname().equals("admin"));
 		assert (ad.getCategory().getId() == 1);
 	}
 
@@ -85,7 +85,7 @@ public class AdServiceListSortedByTest {
 		log.info("" + ad.getTimeStamp());
 		assert (ad.getTitle().equals("Új cím"));
 		assert (ad.getYearOfManufact() == 2000);
-		assert (ad.getUser().getFullname().equals("King Kong"));
+		assert (ad.getUser().getFullname().equals("JaneDoe"));
 		assert (ad.getCategory().getId() == 4);
 	}
 
@@ -140,6 +140,26 @@ public class AdServiceListSortedByTest {
 		assertTrue(!ads.isEmpty());
 		assert (ads.size() == 3);
 		assert (ads.get(1).getCategory().getId() == 2);
+	}
+	
+	@Test
+	public void testDisabledById3() {
+		adService.disableById(3);
+		Ad ad = adService.findById(3);
+		assert(ad.isEnabled()==false);
+	}
+	
+	@Test
+	public void testEnabledById5() {
+		adService.enableById(5);
+		Ad ad = adService.findById(5);
+		assert(ad.isEnabled()== true);
+	}
+	
+	@Test
+	public void testIncrementNumberOfVisitorsById4() {
+		Ad ad = adService.incrementNumberOfVisitors(4);
+		assert(ad.getNumberOfVisitors() == 13);
 	}
 
 }
