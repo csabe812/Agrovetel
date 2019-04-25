@@ -213,6 +213,7 @@ public class AdminController {
 	public String disableAd(@PathVariable long id, Model model) {
 		log.info("Disabled");
 		this.adService.disableById(id);
+		model.addAttribute("ads", this.adService.findAll());
 		return "redirect:/admin/ads";
 	}
 
@@ -226,6 +227,7 @@ public class AdminController {
 	public String enableAd(@PathVariable long id, Model model) {
 		log.info("Enabled");
 		this.adService.enableById(id);
+		model.addAttribute("ads", this.adService.findAll());
 		return "redirect:/admin/ads";
 	}
 
@@ -264,6 +266,7 @@ public class AdminController {
 			@ModelAttribute("manufacturer") Manufacturer updatedManufacturer, Model model) {
 		log.info("Updating manufacturer: " + updatedManufacturer.toString());
 		this.manufacturerService.updateManufacturer(id, updatedManufacturer);
+		model.addAttribute("categories", this.categoryService.findAllCategory());
 		return "redirect:/admin/manufacturers";
 	}
 
@@ -277,6 +280,7 @@ public class AdminController {
 	public String disableManufacturer(@PathVariable long id, Model model) {
 		log.info("Disabled manufacturer");
 		this.manufacturerService.disableManufacturerById(id);
+		model.addAttribute("manufacturers", this.manufacturerService.findAll());
 		return "redirect:/admin/manufacturers";
 	}
 
@@ -290,6 +294,7 @@ public class AdminController {
 	public String enableManufacturer(@PathVariable long id, Model model) {
 		log.info("Enabled manufacturer");
 		this.manufacturerService.enableManufacturerById(id);
+		model.addAttribute("manufacturers", this.manufacturerService.findAll());
 		return "redirect:/admin/manufacturers";
 	}
 
