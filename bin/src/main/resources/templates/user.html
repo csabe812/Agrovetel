@@ -1,0 +1,60 @@
+<!doctype html>
+<html layout:decorate="layouts/main">
+<body>
+	<div layout:fragment="contentFragment">
+
+		<div class="card">
+			<header class="card-header">
+				<h4 class="card-title mt-2">Edit user</h4>
+			</header>
+			<article class="card-body">
+				<form th:object="${user}">
+					<div class="form-row">
+						<div class="col form-group">
+							<label>Full name</label> <input type="text" class="form-control" th:field="*{fullname}"
+								placeholder="">
+						</div>
+					</div>
+					<!-- form-row end.// -->
+					<div class="form-group">
+						<label>Email address</label> <input type="email"
+							class="form-control" placeholder="" th:field="*{email}">
+							<span
+											th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+											class="text-danger"></span>
+					</div>
+					<!-- form-row.// -->
+					<div class="form-group">
+						<label>Old password</label> <input class="form-control"
+							type="password" th:field="*{password}">
+					</div>
+					
+					<!-- form-row.// -->
+					<div class="form-group">
+						<label>New password</label> <input class="form-control"
+							type="password" th:field="*{password}">
+					</div>
+					
+					<!-- form-row.// -->
+					<div class="form-group">
+						<label>New password again</label> <input class="form-control"
+							type="password" th:field="*{password}">
+					</div>
+					<!-- form-group end.// -->
+					<div class="form-group">
+						<a href="" th:href="@{/admin/users/{id}/update(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Update</a>
+					</div>
+					<!-- form-group// -->
+					<small class="text-muted">By clicking the 'Sign Up' button,
+						you confirm that you accept our <br> Terms of use and Privacy
+						Policy.
+					</small>
+				</form>
+			</article>
+		</div>
+		<!-- card.// -->
+
+
+	</div>
+</body>
+</html>

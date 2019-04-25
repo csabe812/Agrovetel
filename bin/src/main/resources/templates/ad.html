@@ -1,0 +1,54 @@
+<!doctype html>
+<html layout:decorate="layouts/main">
+<body>
+	<div layout:fragment="contentFragment">
+
+		<div class="card">
+			<header class="card-header">
+				<h4 class="card-title mt-2">Edit ad</h4>
+			</header>
+			<article class="card-body">
+				<form th:object="${updatedAd}">
+					<div class="form-row">
+						<!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Title</label> <input type="text" class="form-control"
+								th:field="*{title}" placeholder="">
+						</div>
+					</div>
+					<!-- form-row end.// -->
+					<div class="form-row">
+						<!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Title</label> <input type="text" class="form-control"
+								th:field="*{description}" placeholder="">
+						</div>
+					</div>
+					<!-- form-row.// -->
+					<div class="form-row">
+						<!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Title</label> <input type="text" class="form-control"
+								th:field="*{yearOfManufact}" placeholder="">
+						</div>
+					</div>
+					<div class="form-row">
+						<!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Title</label> <input type="text" class="form-control"
+								th:field="*{horsePower}" placeholder="">
+						</div>
+					</div>
+					<!-- form-group end.// -->
+					<div class="form-group">
+						<a href="" th:href="@{/admin/ads/{id}/update(id=${updatedAd.id})}"
+							class="btn btn-primary"><span
+							class="glyphicon glyphicon-edit"></span> Update</a>
+					</div>
+				</form>
+			</article>
+		</div>
+
+	</div>
+</body>
+</html>

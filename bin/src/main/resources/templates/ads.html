@@ -1,0 +1,36 @@
+<!doctype html>
+<html layout:decorate="layouts/main">
+<body>
+	<div layout:fragment="contentFragment">	
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Title</th>
+					<th scope="col">Description</th>
+					<th scope="col">Price</th>
+					<th scope="col">Year of manufacture</th>
+					<th scope="col">Status</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ad : ${ads}">
+					<td th:text="${ad.id}">Mark</td>
+					<td th:text="${ad.title}">Mark</td>
+					<td th:text="${ad.description}">Mark</td>
+					<td th:text="${ad.price}">Mark</td>
+					<td th:text="${ad.yearOfManufact}">Mark</td>
+					<td th:text="${ad.enabled}">Mark</td>
+					<td>
+					<a th:href="@{/admin/ads/{id}/enable(id=${ad.id})}" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span> Enable</a>
+					<a th:href="@{/admin/ads/{id}(id=${ad.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+					<a th:href="@{/admin/ads/{id}/disable(id=${ad.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Disable</a>
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

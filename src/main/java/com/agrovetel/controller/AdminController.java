@@ -20,6 +20,7 @@ import com.agrovetel.service.AdService;
 import com.agrovetel.service.CategoryService;
 import com.agrovetel.service.ManufacturerService;
 import com.agrovetel.service.UserService;
+import com.agrovetel.service.exception.CategoryAlreadyExistsException;
 
 @Controller
 @RequestMapping("/admin")
@@ -348,9 +349,19 @@ public class AdminController {
 	@GetMapping("/categories/{id}/update")
 	public String updateCategory(@PathVariable long id, @ModelAttribute("category") Category updatedCategory,
 			Model model) {
-		log.info("Updating category: " + updatedCategory.toString());
-		this.categoryService.updateCategory(id, updatedCategory);
-		model.addAttribute("categories", this.categoryService.findAllCategory());
+		if (id == 0) {
+			try {
+				this.categoryService.createCategoryByCategoryName(updatedCategory.getName());
+			} catch (CategoryAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				this.categoryService.updateCategory(id, updatedCategory);
+			} catch (CategoryAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
 		return "redirect:/admin/categories";
 	}
 
@@ -386,11 +397,11 @@ public class AdminController {
 	 * Displaying add new categories page
 	 * 
 	 * @return
+	 * @throws CategoryAlreadyExistsException
 	 */
 	@GetMapping("/categories/new")
 	public String showNewcategoryPage(@Valid Category category, Model model) {
-		this.categoryService.updateCreateCategory(category);
-		model.addAttribute("categories", this.categoryService.findAllCategory());
+		log.info("Category id" + category.getId());
 		return "category";
 	}
 

@@ -1,0 +1,62 @@
+<!doctype html>
+<html layout:decorate="layouts/main">
+<body>
+	<div layout:fragment="contentFragment">
+		<article class="card card-product" th:each="ad : ${ads}">
+			<div class="card-body">
+				<div class="row">
+					<aside class="col-sm-3">
+						<div class="img-wrap">
+							<img src="images/items/2.jpg">
+						</div>
+					</aside>
+					<!-- col.// -->
+					<article class="col-sm-6">
+						<h4 class="title" th:text="${ad.title}">Ut wisi enim ad minim veniam</h4>
+						<div class="rating-wrap  mb-2">
+							<div class="label-rating">Visitors:</div>
+							<div class="label-rating" th:text="${ad.numberOfVisitors}">154 orders</div>
+						</div>
+						<!-- rating-wrap.// -->
+						<p th:text="${ad.description}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi
+							enim ad minim veniam</p>
+						<dl class="dlist-align">
+							<dt>HP</dt>
+							<dd th:text="${ad.horsePower}">Black and white</dd>
+						</dl>
+						<!-- item-property-hor .// -->
+						<dl class="dlist-align">
+							<dt>Year of manufact.</dt>
+							<dd th:text="${ad.yearOfManufact}">Syntetic, wooden</dd>
+						</dl>
+						<!-- item-property-hor .// -->
+
+					</article>
+					<!-- col.// -->
+					<aside class="col-sm-3 border-left">
+						<div class="action-wrap">
+							<div class="price-wrap h4">
+								<div class="price" th:text="${ad.price}"> $56 </div>
+								<!--del class="price-old"> $98</del-->
+							</div>
+							<!-- info-price-detail // -->
+							<p class="text-success">Free shipping</p>
+							<br>
+							<p>
+								<!--a href="#" class="btn btn-primary"> Buy now </a-->
+								<a href="#" th:href="@{/ads/{id}(id=${ad.id})}" class="btn btn-secondary"> Details </a>
+							</p>
+						</div>
+						<!-- action-wrap.// -->
+					</aside>
+					<!-- col.// -->
+				</div>
+				<!-- row.// -->
+			</div>
+			<!-- card-body .// -->
+		</article>
+		<!-- card product .// -->
+	</div>
+</body>
+</html>

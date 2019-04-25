@@ -2,17 +2,14 @@ package com.agrovetel.service;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.agrovetel.domain.Ad;
 import com.agrovetel.domain.Category;
-import com.agrovetel.repository.AdRepository;
 import com.agrovetel.repository.CategoryRepository;
+import com.agrovetel.service.exception.CategoryAlreadyExistsException;
 
 /**
  * A service class for finding categori(es)
@@ -59,23 +56,41 @@ public class CategoryService {
 	/**
 	 * Updating/create a category
 	 * 
-	 * @param category
+	 * @param categoryName
 	 * @return
 	 */
-	public Category updateCreateCategory(Category category) {
-		return this.categoryRepository.save(category);
+	public Category updateCreateCategory(Category category){
+				log.info("save category");
+				return this.categoryRepository.save(category);
 	}
+	
+	public Category createCategoryByCategoryName(String categoryName) throws CategoryAlreadyExistsException{
+		if(categoryAlreadyExists(categoryName) == false) {
+			Category category = new Category(categoryName);
+			return this.categoryRepository.save(category);
+		}
+		else {
+			throw new CategoryAlreadyExistsException("The " + categoryName + " already exists.");
+		}
+}
+
 
 	/**
 	 * Updates a category
 	 * 
 	 * @param updatedCategory
 	 */
-	public void updateCategory(long id, Category updatedCategory) {
+	public void updateCategory(long id, Category updatedCategory) throws CategoryAlreadyExistsException{
 		Category category = this.categoryRepository.findById(id);
 		log.info("" + updatedCategory.getName());
-		category.setName(updatedCategory.getName());
-		this.categoryRepository.save(category);
+		if(categoryAlreadyExists(updatedCategory.getName()) == false) {
+			category.setName(updatedCategory.getName());
+			this.categoryRepository.save(category);
+		}
+		else {
+			throw new CategoryAlreadyExistsException("The " + updatedCategory.getName() + " already exists.");
+		}
+		
 	}
 
 	/**
@@ -109,6 +124,15 @@ public class CategoryService {
 		this.categoryRepository.save(category);
 	}
 
-	
+	public boolean categoryAlreadyExists(String categoryName){
+		categoryName = categoryName.toLowerCase();
+		List<Category> categories = categoryRepository.findAll();
+		for (Category category : categories) {
+			if(category.getName().toLowerCase().equals(categoryName)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

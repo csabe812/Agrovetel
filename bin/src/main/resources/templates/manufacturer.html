@@ -1,0 +1,31 @@
+<!doctype html>
+<html layout:decorate="layouts/main">
+<body>
+	<div layout:fragment="contentFragment">
+
+		<div class="card">
+			<header class="card-header">
+				<h4 class="card-title mt-2">Edit/add category</h4>
+			</header>
+			<article class="card-body">
+				<form
+					th:action="@{/admin/manufacturers/{id}/update(id=${manufacturer.id})}"
+					th:object="${manufacturer}">
+					<div class="form-row">
+						<div class="col form-group">
+							<label>Manufacturer name</label> <input type="text"
+								class="form-control" th:field="*{manufacturerName}"
+								placeholder="">
+						</div>
+					</div>
+					<!-- form-row end.// -->
+					<button class="btn btn-primary" type="submit">Update/Save</button>
+				</form>
+			</article>
+		</div>
+		<!-- card.// -->
+
+
+	</div>
+</body>
+</html>
