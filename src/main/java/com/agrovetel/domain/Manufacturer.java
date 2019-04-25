@@ -76,8 +76,7 @@ public class Manufacturer {
 
 	@Override
 	public String toString() {
-		return "Manufacturer [id=" + id + ", manufacturerName=" + manufacturerName + ", enabled=" + enabled + ", ads="
-				+ ads + "]";
+		return "Manufacturer [id=" + id + ", manufacturerName=" + manufacturerName + ", enabled=" + enabled + "]";
 	}
 
 }

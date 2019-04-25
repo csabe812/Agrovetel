@@ -182,7 +182,7 @@ public class AdminController {
 	@GetMapping("/ads/{id}")
 	public String editAd(@PathVariable long id, Model model) {
 		log.info("Getting a ad by id");
-		model.addAttribute("updatedAd", this.adService.findById(id));
+		model.addAttribute("ad", this.adService.findById(id));
 		return "ad";
 	}
 
@@ -196,10 +196,10 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/ads/{id}/update")
-	public String updateAd(@PathVariable long id, @ModelAttribute("updatedAd") Ad updatedAd, Model model) {
+	public String updateAd(@PathVariable long id, @ModelAttribute("ad") Ad updatedAd, Model model) {
 		log.info("Updating ad: " + updatedAd.toString());
+		log.info("Title: "+ updatedAd.getTitle() + " description: " + updatedAd.getDescription());
 		this.adService.updateAd(id, updatedAd);
-		model.addAttribute("ads", this.adService.findAll());
 		return "redirect:/admin/ads";
 	}
 
@@ -353,15 +353,15 @@ public class AdminController {
 			try {
 				this.categoryService.createCategoryByCategoryName(updatedCategory.getName());
 			} catch (CategoryAlreadyExistsException e) {
-				e.printStackTrace();
+				log.error(e.getMessage());
 			}
 		} else {
 			try {
 				this.categoryService.updateCategory(id, updatedCategory);
 			} catch (CategoryAlreadyExistsException e) {
-				e.printStackTrace();
+				log.error(e.getMessage());
 			}
-		}
+		} 
 		return "redirect:/admin/categories";
 	}
 

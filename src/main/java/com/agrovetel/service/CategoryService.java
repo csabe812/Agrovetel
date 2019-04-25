@@ -70,7 +70,7 @@ public class CategoryService {
 			return this.categoryRepository.save(category);
 		}
 		else {
-			throw new CategoryAlreadyExistsException("The " + categoryName + " already exists.");
+			throw new CategoryAlreadyExistsException("The " + categoryName + " category already exists.");
 		}
 }
 
@@ -88,7 +88,7 @@ public class CategoryService {
 			this.categoryRepository.save(category);
 		}
 		else {
-			throw new CategoryAlreadyExistsException("The " + updatedCategory.getName() + " already exists.");
+			throw new CategoryAlreadyExistsException("The " + updatedCategory.getName() + " category already exists.");
 		}
 		
 	}

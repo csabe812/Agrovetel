@@ -53,7 +53,7 @@ public class County {
 
 	@Override
 	public String toString() {
-		return "County [id=" + id + ", countyName=" + countyName + ", ads=" + ads + "]";
+		return "County [id=" + id + ", countyName=" + countyName + "]";
 	}
 
 }
