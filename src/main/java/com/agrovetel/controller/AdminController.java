@@ -21,6 +21,7 @@ import com.agrovetel.service.CategoryService;
 import com.agrovetel.service.ManufacturerService;
 import com.agrovetel.service.UserService;
 import com.agrovetel.service.exception.CategoryAlreadyExistsException;
+import com.agrovetel.service.exception.ManufacturerAlreadyExistsException;
 
 @Controller
 @RequestMapping("/admin")
@@ -262,8 +263,19 @@ public class AdminController {
 	@GetMapping("/manufacturers/{id}/update")
 	public String updateManufacturer(@PathVariable long id,
 			@ModelAttribute("manufacturer") Manufacturer updatedManufacturer, Model model) {
-		log.info("Updating manufacturer: " + updatedManufacturer.toString());
-		this.manufacturerService.updateManufacturer(id, updatedManufacturer);
+		if (id == 0) {
+			try {
+				this.manufacturerService.createManufacturerByManufacturerName(updatedManufacturer.getManufacturerName());
+			} catch (ManufacturerAlreadyExistsException e) {
+				log.error(e.getMessage());
+			}
+		} else {
+			try {
+				this.manufacturerService.updateManufacturer(id, updatedManufacturer);
+			} catch (ManufacturerAlreadyExistsException e) {
+				log.error(e.getMessage());
+			}
+		} 
 		return "redirect:/admin/manufacturers";
 	}
 
@@ -300,8 +312,6 @@ public class AdminController {
 	 */
 	@GetMapping("/manufacturers/new")
 	public String showNewManufacturerPage(@Valid Manufacturer manufacturer, Model model) {
-		this.manufacturerService.updateCreateManufacturer(manufacturer);
-		model.addAttribute("manufacturers", this.manufacturerService.findAll());
 		return "manufacturer";
 	}
 

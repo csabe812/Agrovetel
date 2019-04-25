@@ -56,7 +56,7 @@ public class CategoryService {
 	/**
 	 * Updating/create a category
 	 * 
-	 * @param categoryName
+	 * @param category
 	 * @return
 	 */
 	public Category updateCreateCategory(Category category){
@@ -64,6 +64,12 @@ public class CategoryService {
 				return this.categoryRepository.save(category);
 	}
 	
+	/**
+	 * Create a category
+	 * 
+	 * @param categoryName
+	 * @return
+	 */
 	public Category createCategoryByCategoryName(String categoryName) throws CategoryAlreadyExistsException{
 		if(categoryAlreadyExists(categoryName) == false) {
 			Category category = new Category(categoryName);

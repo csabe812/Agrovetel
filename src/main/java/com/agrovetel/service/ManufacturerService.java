@@ -9,9 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.agrovetel.domain.Category;
 import com.agrovetel.domain.Manufacturer;
 import com.agrovetel.repository.ManufacturerRepository;
+import com.agrovetel.service.exception.CategoryAlreadyExistsException;
+import com.agrovetel.service.exception.ManufacturerAlreadyExistsException;
 
 /**
  * A service class for finding manufacturer(s)
@@ -57,16 +58,38 @@ public class ManufacturerService {
 	}
 
 	/**
+	 * Create a manufacturer
+	 * 
+	 * @param manufacturerName
+	 * @return
+	 */
+	public Manufacturer createManufacturerByManufacturerName(String manufacturerName)
+			throws ManufacturerAlreadyExistsException {
+		if (manufacturerAlreadyExists(manufacturerName) == false) {
+			Manufacturer manufacturer = new Manufacturer(manufacturerName);
+			return this.manufacturerRepositoy.save(manufacturer);
+		} else {
+			throw new ManufacturerAlreadyExistsException("The " + manufacturerName + " manufacturer already exists.");
+		}
+	}
+
+	/**
 	 * Update a manufacturer
 	 * 
 	 * @param id
 	 * @param updatedManufacturer
 	 */
-	public void updateManufacturer(long id, Manufacturer updatedManufacturer) {
+	public void updateManufacturer(long id, Manufacturer updatedManufacturer)
+			throws ManufacturerAlreadyExistsException {
 		Manufacturer manufacturer = this.manufacturerRepositoy.findById(id);
 		log.info("" + updatedManufacturer.getManufacturerName());
-		manufacturer.setManufacturerName(updatedManufacturer.getManufacturerName());
-		this.manufacturerRepositoy.save(manufacturer);
+		if (manufacturerAlreadyExists(updatedManufacturer.getManufacturerName()) == false) {
+			manufacturer.setManufacturerName(updatedManufacturer.getManufacturerName());
+			this.manufacturerRepositoy.save(manufacturer);
+		} else {
+			throw new ManufacturerAlreadyExistsException(
+					"The " + updatedManufacturer.getManufacturerName() + " manufacturer already exists.");
+		}
 	}
 
 	/**
@@ -89,6 +112,17 @@ public class ManufacturerService {
 		Manufacturer manufacturer = this.manufacturerRepositoy.findById(id);
 		manufacturer.setEnabled(true);
 		this.manufacturerRepositoy.save(manufacturer);
+	}
+
+	public boolean manufacturerAlreadyExists(String manufacturerName) {
+		manufacturerName = manufacturerName.toLowerCase();
+		List<Manufacturer> manufacturers = manufacturerRepositoy.findAll();
+		for (Manufacturer manufacturer : manufacturers) {
+			if (manufacturer.getManufacturerName().toLowerCase().equals(manufacturerName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
