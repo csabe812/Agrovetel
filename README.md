@@ -2,7 +2,7 @@
 This is a spring boot application for selling agricultural things.
 
 Versions:
-v0.0.1 is deploy to Heroku: https://agrovetel.herokuapp.com/
+v0.0.1 is deploy to Heroku: https://agrovetel.herokuapp.com/  
 What works:
 * registration
 * login
