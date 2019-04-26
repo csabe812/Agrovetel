@@ -21,7 +21,7 @@ public class Category {
 	private long id;
 
 	@Column(nullable = false)
-	@NotEmpty
+	@NotBlank
 	private String name;
 
 	@Column
