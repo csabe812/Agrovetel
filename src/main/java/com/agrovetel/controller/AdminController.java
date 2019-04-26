@@ -263,11 +263,13 @@ public class AdminController {
 
 	@GetMapping("/manufacturers/{id}/update")
 	public String updateManufacturer(@PathVariable long id,
-			@ModelAttribute("manufacturer") @Valid Manufacturer updatedManufacturer, BindingResult bindingResult, Model model) {
+			@ModelAttribute("manufacturer") @Valid Manufacturer updatedManufacturer, BindingResult bindingResult,
+			Model model) {
 		if (id == 0) {
 			if (!bindingResult.hasErrors()) {
 				try {
-					this.manufacturerService.createManufacturerByManufacturerName(updatedManufacturer.getManufacturerName());
+					this.manufacturerService
+							.createManufacturerByManufacturerName(updatedManufacturer.getManufacturerName());
 					return "redirect:/admin/manufacturers";
 				} catch (ManufacturerAlreadyExistsException e) {
 					log.error(e.getMessage());

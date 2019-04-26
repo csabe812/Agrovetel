@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.agrovetel.domain.Manufacturer;
 import com.agrovetel.repository.ManufacturerRepository;
-import com.agrovetel.service.exception.CategoryAlreadyExistsException;
 import com.agrovetel.service.exception.ManufacturerAlreadyExistsException;
 
 /**

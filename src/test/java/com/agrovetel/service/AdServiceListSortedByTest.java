@@ -18,7 +18,6 @@ import com.agrovetel.domain.Ad;
 import com.agrovetel.domain.Category;
 import com.agrovetel.domain.Manufacturer;
 import com.agrovetel.domain.User;
-import com.agrovetel.repository.CategoryRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -141,25 +140,25 @@ public class AdServiceListSortedByTest {
 		assert (ads.size() == 3);
 		assert (ads.get(1).getCategory().getId() == 2);
 	}
-	
+
 	@Test
 	public void testDisabledById3() {
 		adService.disableById(3);
 		Ad ad = adService.findById(3);
-		assert(ad.isEnabled()==false);
+		assert (ad.isEnabled() == false);
 	}
-	
+
 	@Test
 	public void testEnabledById5() {
 		adService.enableById(5);
 		Ad ad = adService.findById(5);
-		assert(ad.isEnabled()== true);
+		assert (ad.isEnabled() == true);
 	}
-	
+
 	@Test
 	public void testIncrementNumberOfVisitorsById4() {
 		Ad ad = adService.incrementNumberOfVisitors(4);
-		assert(ad.getNumberOfVisitors() == 13);
+		assert (ad.getNumberOfVisitors() == 13);
 	}
 
 }

@@ -1,4 +1,5 @@
 package com.agrovetel.controller;
+
 import java.util.Collection;
 
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ public class MainConroller {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
+
 	/**
 	 * 
 	 * 
@@ -37,17 +39,17 @@ public class MainConroller {
 	 */
 	@PostMapping("/registrate")
 	public String showAds(@ModelAttribute User user) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		log.info("==========");
 		log.info("User will be registered");
 		log.info(user.toString());
 		userService.registerUser(user);
 		return "auth/login";
 	}
-	
+
 	/**
-	 * Deciding where to go: admin site - user site - nowhere
-	 * NOT_LOGGED_IN_USER is not checked
+	 * Deciding where to go: admin site - user site - nowhere NOT_LOGGED_IN_USER is
+	 * not checked
+	 * 
 	 * @return the given site
 	 */
 	@GetMapping("/mysite")
@@ -59,15 +61,13 @@ public class MainConroller {
 		boolean isGlobalAdmin = authorities.contains(new SimpleGrantedAuthority("GLOBAL_ADMIN"));
 		boolean isLoggedInUser = authorities.contains(new SimpleGrantedAuthority("LOGGED_IN_USER"));
 		boolean isAdmin = authorities.contains(new SimpleGrantedAuthority("ADMIN"));
-		if(isAdmin || isGlobalAdmin) {
+		if (isAdmin || isGlobalAdmin) {
 			return "redirect:/admin/";
-		}
-		else if(isLoggedInUser) {
+		} else if (isLoggedInUser) {
 			return "redirect:/user/mypage";
-		}
-		else {
+		} else {
 			return "/";
 		}
 	}
-	
+
 }

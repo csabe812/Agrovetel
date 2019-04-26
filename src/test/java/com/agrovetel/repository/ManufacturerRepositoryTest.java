@@ -16,30 +16,28 @@ import com.agrovetel.domain.Manufacturer;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class ManufacturerRepositoryTest {
-	
+
 	@Autowired
 	private ManufacturerRepository manufacturerRepository;
-	
+
 	@Test
 	public void testFindAllManufacturers() {
 		List<Manufacturer> manufacturers = manufacturerRepository.findAll();
 		assertNotNull(manufacturers);
 		assertTrue(!manufacturers.isEmpty());
-		assert(manufacturers.size()==5);
+		assert (manufacturers.size() == 5);
 	}
-	
+
 	@Test
 	public void testById1() {
 		Manufacturer manufacturer = manufacturerRepository.findById(1);
-		assert(manufacturer.getManufacturerName().equals("MTZ"));
-	}
-	
-	@Test
-	public void testById4() {
-		Manufacturer manufacturer  = manufacturerRepository.findById(5);
-		assert(manufacturer.getManufacturerName().equals("Yto"));
+		assert (manufacturer.getManufacturerName().equals("MTZ"));
 	}
 
-	
+	@Test
+	public void testById4() {
+		Manufacturer manufacturer = manufacturerRepository.findById(5);
+		assert (manufacturer.getManufacturerName().equals("Yto"));
+	}
 
 }
