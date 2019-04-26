@@ -8,12 +8,15 @@
 				<h4 class="card-title mt-2">Edit/add category</h4>
 			</header>
 			<article class="card-body">
-				<form th:action="@{/admin/categories/{id}/update(id=${category.id})}" th:object="${category}">
+				<form
+					th:action="@{/admin/categories/{id}/update(id=${category.id})}"
+					th:object="${category}">
 					<div class="form-row">
 						<div class="col form-group">
-							<label>Category name</label> <input type="text" class="form-control" th:field="*{name}"
-								placeholder="">
+							<label>Category name</label> <input type="text"
+								class="form-control" th:field="*{name}" placeholder="">
 						</div>
+					</div>
 					<button class="btn btn-primary" type="submit">Update/Save</button>
 				</form>
 			</article>

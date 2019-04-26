@@ -1,5 +1,7 @@
 package com.agrovetel.controller;
 
+import javax.persistence.RollbackException;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -7,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -172,7 +176,7 @@ public class AdminController {
 		model.addAttribute("ads", this.adService.findAll());
 		return "ads";
 	}
-	
+
 	/**
 	 * Getting details of a ad
 	 * 
@@ -199,7 +203,7 @@ public class AdminController {
 	@GetMapping("/ads/{id}/update")
 	public String updateAd(@PathVariable long id, @ModelAttribute("ad") Ad updatedAd, Model model) {
 		log.info("Updating ad: " + updatedAd.toString());
-		log.info("Title: "+ updatedAd.getTitle() + " description: " + updatedAd.getDescription());
+		log.info("Title: " + updatedAd.getTitle() + " description: " + updatedAd.getDescription());
 		this.adService.updateAd(id, updatedAd);
 		return "redirect:/admin/ads";
 	}
@@ -262,20 +266,23 @@ public class AdminController {
 
 	@GetMapping("/manufacturers/{id}/update")
 	public String updateManufacturer(@PathVariable long id,
-			@ModelAttribute("manufacturer") Manufacturer updatedManufacturer, Model model) {
+			@ModelAttribute("manufacturer") Manufacturer updatedManufacturer, Model model,
+			BindingResult bindingResult) {
 		if (id == 0) {
 			try {
-				this.manufacturerService.createManufacturerByManufacturerName(updatedManufacturer.getManufacturerName());
-			} catch (ManufacturerAlreadyExistsException e) {
-				log.error(e.getMessage());
+				this.manufacturerService
+						.createManufacturerByManufacturerName(updatedManufacturer.getManufacturerName());
+			} catch (ManufacturerAlreadyExistsException er) {
+				log.error(er.getMessage());
 			}
+
 		} else {
 			try {
 				this.manufacturerService.updateManufacturer(id, updatedManufacturer);
-			} catch (ManufacturerAlreadyExistsException e) {
-				log.error(e.getMessage());
+			} catch (ManufacturerAlreadyExistsException er) {
+				log.error(er.getMessage());
 			}
-		} 
+		}
 		return "redirect:/admin/manufacturers";
 	}
 
@@ -352,22 +359,36 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/categories/{id}/update")
-	public String updateCategory(@PathVariable long id, @ModelAttribute("category") Category updatedCategory,
-			Model model) {
+	public String updateCategory(@PathVariable long id, @ModelAttribute("category") @Valid Category updatedCategory,
+			BindingResult bindingResult, Model model) {
 		if (id == 0) {
-			try {
-				this.categoryService.createCategoryByCategoryName(updatedCategory.getName());
-			} catch (CategoryAlreadyExistsException e) {
-				log.error(e.getMessage());
+			if (!bindingResult.hasErrors()) {
+				try {
+					this.categoryService.createCategoryByCategoryName(updatedCategory.getName());
+					return "redirect:/admin/categories";
+				} catch (CategoryAlreadyExistsException e) {
+					log.error(e.getMessage());
+					return "redirect:/admin/categories/new";
+				}
+			} else {
+				log.info(bindingResult.toString());
+				return "redirect:/admin/categories/new";
 			}
+
 		} else {
-			try {
-				this.categoryService.updateCategory(id, updatedCategory);
-			} catch (CategoryAlreadyExistsException e) {
-				log.error(e.getMessage());
+			if (!bindingResult.hasErrors()) {
+				try {
+					this.categoryService.updateCategory(id, updatedCategory);
+					return "redirect:/admin/categories";
+				} catch (CategoryAlreadyExistsException e) {
+					log.error(e.getMessage());
+					return "redirect:/admin/categories/{id}";
+				}
+			} else {
+				log.info(bindingResult.toString());
+				return "redirect:/admin/categories/{id}";
 			}
-		} 
-		return "redirect:/admin/categories";
+		}
 	}
 
 	/**
@@ -403,7 +424,7 @@ public class AdminController {
 	 * @throws CategoryAlreadyExistsException
 	 */
 	@GetMapping("/categories/new")
-	public String showNewcategoryPage(@Valid Category category, Model model) {
+	public String showNewcategoryPage(Category category, Model model) {
 		log.info("Category id" + category.getId());
 		return "category";
 	}
