@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "manufacturers")
@@ -18,7 +19,8 @@ public class Manufacturer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column
+	@Column(nullable = false)
+	@NotBlank
 	private String manufacturerName;
 
 	@Column

@@ -266,24 +266,35 @@ public class AdminController {
 
 	@GetMapping("/manufacturers/{id}/update")
 	public String updateManufacturer(@PathVariable long id,
-			@ModelAttribute("manufacturer") Manufacturer updatedManufacturer, Model model,
-			BindingResult bindingResult) {
+			@ModelAttribute("manufacturer") @Valid Manufacturer updatedManufacturer, BindingResult bindingResult, Model model) {
 		if (id == 0) {
-			try {
-				this.manufacturerService
-						.createManufacturerByManufacturerName(updatedManufacturer.getManufacturerName());
-			} catch (ManufacturerAlreadyExistsException er) {
-				log.error(er.getMessage());
+			if (!bindingResult.hasErrors()) {
+				try {
+					this.manufacturerService.createManufacturerByManufacturerName(updatedManufacturer.getManufacturerName());
+					return "redirect:/admin/manufacturers";
+				} catch (ManufacturerAlreadyExistsException e) {
+					log.error(e.getMessage());
+					return "redirect:/admin/manufacturers/new";
+				}
+			} else {
+				log.info(bindingResult.toString());
+				return "redirect:/admin/manufacturers/new";
 			}
 
 		} else {
-			try {
-				this.manufacturerService.updateManufacturer(id, updatedManufacturer);
-			} catch (ManufacturerAlreadyExistsException er) {
-				log.error(er.getMessage());
+			if (!bindingResult.hasErrors()) {
+				try {
+					this.manufacturerService.updateManufacturer(id, updatedManufacturer);
+					return "redirect:/admin/manufacturers";
+				} catch (ManufacturerAlreadyExistsException e) {
+					log.error(e.getMessage());
+					return "redirect:/admin/manufacturers/{id}";
+				}
+			} else {
+				log.info(bindingResult.toString());
+				return "redirect:/admin/manufacturers/{id}";
 			}
 		}
-		return "redirect:/admin/manufacturers";
 	}
 
 	/**
@@ -318,7 +329,7 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("/manufacturers/new")
-	public String showNewManufacturerPage(@Valid Manufacturer manufacturer, Model model) {
+	public String showNewManufacturerPage(Manufacturer manufacturer, Model model) {
 		return "manufacturer";
 	}
 
