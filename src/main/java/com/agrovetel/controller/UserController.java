@@ -112,6 +112,16 @@ public class UserController {
 	}
 
 	/**
+	 * Displaying add new ad page
+	 * 
+	 * @return
+	 */
+	@GetMapping("/ads/new")
+	public String showNewAdPage(Ad ad, Model model) {
+		return "userad";
+	}
+	
+	/**
 	 * About me section
 	 * 
 	 * @return

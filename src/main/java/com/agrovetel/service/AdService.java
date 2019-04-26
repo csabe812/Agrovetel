@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.agrovetel.domain.Ad;
@@ -30,6 +32,18 @@ public class AdService {
 	@Autowired
 	public void setAdRepository(AdRepository adRepository) {
 		this.adRepository = adRepository;
+	}
+
+	private UserService userService;
+
+	/**
+	 * Setter-based autowiring
+	 * 
+	 * @param userService
+	 */
+	@Autowired
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 	/**
@@ -138,18 +152,34 @@ public class AdService {
 	public void updateAd(long id, Ad updatedAd) {
 		log.info("this iz the id: " + updatedAd.toString());
 		Ad ad = this.adRepository.findById(id);
-		log.info("Ad which will be updated: " + ad.toString());
-		log.info("Updated with: " + updatedAd.toString());
-		ad.setSellOrSearch(updatedAd.isSellOrSearch());
-		ad.setTitle(updatedAd.getTitle());
-		ad.setDescription(updatedAd.getDescription());
-		ad.setManufacturer(updatedAd.getManufacturer());
-		ad.setCategory(updatedAd.getCategory());
-		ad.setYearOfManufact(updatedAd.getYearOfManufact());
-		ad.setHorsePower(updatedAd.getHorsePower());
-		ad.setPrice(updatedAd.getPrice()); //ad.setCounty(updatedAd.getCounty());
-		ad.setTimeStamp(updatedAd.getTimeStamp());
-		this.adRepository.save(ad);
+		if(ad == null) {
+			log.info("Ad was not found, it is null");
+			ad = new Ad();
+			ad.setTitle(updatedAd.getTitle());
+			ad.setDescription(updatedAd.getDescription());
+			ad.setHorsePower(updatedAd.getHorsePower());
+			ad.setPrice(updatedAd.getPrice());
+			ad.setYearOfManufact(updatedAd.getYearOfManufact());
+			ad.setEnabled(true);
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			ad.setUser(this.userService.findByEmail(auth.getName()));
+			log.info("Given ad will be saved: " + ad.toString());
+			this.adRepository.save(ad);
+		}
+		else {
+			log.info("Ad which will be updated: " + ad.toString());
+			log.info("Updated with: " + updatedAd.toString());
+			ad.setSellOrSearch(updatedAd.isSellOrSearch());
+			ad.setTitle(updatedAd.getTitle());
+			ad.setDescription(updatedAd.getDescription());
+			ad.setManufacturer(updatedAd.getManufacturer());
+			ad.setCategory(updatedAd.getCategory());
+			ad.setYearOfManufact(updatedAd.getYearOfManufact());
+			ad.setHorsePower(updatedAd.getHorsePower());
+			ad.setPrice(updatedAd.getPrice()); //ad.setCounty(updatedAd.getCounty());
+			ad.setTimeStamp(updatedAd.getTimeStamp());
+			this.adRepository.save(ad);
+		}
 	}
 
 	/**
