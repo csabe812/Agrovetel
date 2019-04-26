@@ -6,6 +6,8 @@ insert into users(email, enabled, password, fullname)
 values('jane@doe.com', false, 'janepass', 'JaneDoe');
 insert into users(email, enabled, password, fullname)
 values('king@kong.com', true, 'kingkongpass', 'KingKong');
+insert into users(email, enabled, password, fullname)
+values('simpleuser', true, '$2a$10$HMP5RLoT4QCm9rR2iOcUoO.3ToVFooIYXrbeWWSyLpu4229iFLXxi', 'Simple User');
 
 insert into roles(role) values ('GLOBAL_ADMIN');
 insert into roles(role) values ('LOGGED_IN_USER');
@@ -18,6 +20,7 @@ insert into users_roles(user_id, role_id) values (1, 3);
 insert into users_roles(user_id, role_id) values (1, 4);
 insert into users_roles(user_id, role_id) values (2, 2);
 insert into users_roles(user_id, role_id) values (3, 3);
+insert into users_roles(user_id, role_id) values (5, 2);
 
 insert into counties(county_name) values ('Békés megye');
 insert into counties(county_name) values ('Csongrád megye');
@@ -39,8 +42,8 @@ values ('Ad1', 'Ad1 description', 20, 150, true, 1980, 1, 1, 1, 3, true);
 insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
 values ('Ad2', 'Ad2 description', 25, 150, true, 1980, 1, 1, 1, 0, true);
 insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad3', 'Ad3 description', 35, 150, true, 1980, 1, 2, 1, 0, true);
+values ('Ad3', 'Ad3 description', 35, 150, true, 1980, 1, 5, 1, 0, true);
 insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad4', 'Ad4 description', 30, 3, false, 2019, 2, 3, 2, 12, true);
+values ('Ad4', 'Ad4 description', 30, 3, false, 2019, 2, 5, 2, 12, true);
 insert into ads (title, description, price, horse_power, sell_or_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
-values ('Ad5', 'Ad5 description', 220, 1150, true, 1994, 3, 3, 3, 0, false);
+values ('Ad5', 'Ad5 description', 220, 1150, true, 1994, 3, 5, 3, 0, false);

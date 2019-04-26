@@ -16,7 +16,8 @@ public interface AdRepository extends CrudRepository<Ad, Long>{
 	List<Ad> findAll();
 	List<Ad> findAllByCategoryId(long categoryId);
 	List<Ad> findAllByCountyId(long countyId);
-	List<Ad> findByUserId(long userId);
+	List<Ad> findAllByUserId(long userId);
+	List<Ad> findAllByUserIdAndEnabled(long userId, boolean enabled);
 	List<Ad> findByCategoryId(long categoryId);
 	void deleteById(long id);
 	

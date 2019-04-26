@@ -118,7 +118,7 @@ public class AdServiceListSortedByTest {
 
 	@Test
 	public void testFindAllAdByUser1() {
-		List<Ad> ads = adService.findByUser(1);
+		List<Ad> ads = adService.findAllByUser(1);
 		assertTrue(!ads.isEmpty());
 		assert (ads.size() == 1);
 		assert (ads.get(0).getYearOfManufact() == 1980);
@@ -126,7 +126,7 @@ public class AdServiceListSortedByTest {
 
 	@Test
 	public void testFindAllAdByUser2() {
-		List<Ad> ads = adService.findByUser(2);
+		List<Ad> ads = adService.findAllByUser(2);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert (ads.size() == 1);
@@ -135,7 +135,7 @@ public class AdServiceListSortedByTest {
 
 	@Test
 	public void testFindAllAdByUser3() {
-		List<Ad> ads = adService.findByUser(3);
+		List<Ad> ads = adService.findAllByUser(3);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert (ads.size() == 3);

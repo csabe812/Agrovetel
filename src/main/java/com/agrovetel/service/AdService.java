@@ -47,8 +47,18 @@ public class AdService {
 	 * @param userId a user's id
 	 * @return all the user's ads
 	 */
-	public List<Ad> findByUser(long userId) {
-		return this.adRepository.findByUserId(userId);
+	public List<Ad> findAllByUser(long userId) {
+		return this.adRepository.findAllByUserId(userId);
+	}
+	
+	/**
+	 * Finding all the ads by userId and enabled boolean
+	 * @param userId
+	 * @param enabled
+	 * @return
+	 */
+	public List<Ad> findAllByUserIdAndEnabled(long userId, boolean enabled) {
+		return this.adRepository.findAllByUserIdAndEnabled(userId, enabled);
 	}
 
 	/**

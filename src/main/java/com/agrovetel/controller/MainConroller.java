@@ -63,7 +63,7 @@ public class MainConroller {
 			return "redirect:/admin/";
 		}
 		else if(isLoggedInUser) {
-			return "mypage";
+			return "redirect:/user/mypage";
 		}
 		else {
 			return "/";
