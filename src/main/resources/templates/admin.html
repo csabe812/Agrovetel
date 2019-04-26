@@ -2,7 +2,9 @@
 <html layout:decorate="layouts/main">
 <body>
 	<div layout:fragment="contentFragment">
-		<h1>HelloWorld</h1>
+		<a th:href="@{/admin/users}" class="btn btn-info">I would like to edit users</a>
+		<a th:href="@{/admin/categories}" class="btn btn-info">I would like to edit categories</a>
+		<a th:href="@{/admin/manufacturers}" class="btn btn-info">I would like to edit manufacturers</a>
 	</div>
 </body>
 </html>

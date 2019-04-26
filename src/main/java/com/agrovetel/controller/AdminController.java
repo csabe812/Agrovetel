@@ -86,7 +86,7 @@ public class AdminController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String showAdminSite() {
 		log.debug("Loading admin site");
 		return "admin";
