@@ -203,5 +203,157 @@ public class AdService {
 		ad.setEnabled(true);
 		this.adRepository.save(ad);
 	}
-
+	
+	/**
+	 * Finding all the ads order by time stamp
+	 * 
+	 * @return
+	 */
+	public List<Ad> findAllOrderByTmeStamp(){
+		return this.adRepository.findAllOrderByTmeStamp();
+	}
+	
+	/**
+	 * Find all ads by price between order by price asc
+	 * 
+	 * @param double bottomPrice
+	 * @param double topPrice
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByPriceBetweenOrderByPriceAsc(double bottomPrice, double topPrice){
+		return this.adRepository.findByPriceBetweenOrderByPriceAsc(bottomPrice, topPrice);
+	}
+	
+	/**
+	 * Find all ads by price between two prices and order by price desc
+	 * 
+	 * @param double bottomPrice
+	 * @param double topPrice
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByPriceBetweenOrderByPriceDesc(double bottomPrice, double topPrice){
+		return this.adRepository.findByPriceBetweenOrderByPriceDesc(bottomPrice, topPrice);
+	}
+	
+	/**
+	 * Find all ads by price greater than and order by price asc
+	 * 
+	 * @param double bottomPrice
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByPriceGreaterThanOrderByPriceAsc(double bottomPrice){
+		return this.adRepository.findByPriceGreaterThanOrderByPriceAsc(bottomPrice);
+	}
+	
+	/**
+	 * Find all ads by price greater than and order by price desc
+	 * 
+	 * @param double topPrice
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByPriceGreaterThanOrderByPriceDesc(double topPrice){
+		return this.adRepository.findByPriceGreaterThanOrderByPriceDesc(topPrice);
+	}
+	
+	/**
+	 * Find all ads by price less than and order by price asc
+	 * 
+	 * @param double topPrice
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByPriceLessThanOrderByPriceAsc(double topPrice){
+		return this.adRepository.findByPriceLessThanOrderByPriceAsc(topPrice);
+	}
+	
+	/**
+	 * Find all ads by price less than and order by price desc
+	 * 
+	 * @param double bottomPrice
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByPriceLessThanOrderByPriceDesc(double bottomPrice){
+		return this.adRepository.findByPriceLessThanOrderByPriceDesc(bottomPrice);
+	}
+	
+	/**
+	 * Find all ads by number of visitors between order by number of visitors asc
+	 * 
+	 * @param double bottomNumberOfVisitors
+	 * @param double topNumberOfVisitors
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByNumberOfVisitorsBetweenOrderByNumberOfVisitorsAsc(int bottomNumberOfVisitors, int topNumberOfVisitors){
+		return this.adRepository.findByNumberOfVisitorsBetweenOrderByNumberOfVisitorsAsc(bottomNumberOfVisitors, topNumberOfVisitors);
+	}
+	
+	/**
+	 * Find all ads by number of visitors between two prices and order by number of visitors desc
+	 * 
+	 * @param double bottomNumberOfVisitors
+	 * @param double topNumberOfVisitors
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByNumberOfVisitorsBetweenOrderByNumberOfVisitorsDesc(int bottomNumberOfVisitors, int topNumberOfVisitors){
+		return this.adRepository.findByNumberOfVisitorsBetweenOrderByNumberOfVisitorsDesc(bottomNumberOfVisitors, topNumberOfVisitors);
+	}
+	
+	/**
+	 * Find all ads by number of visitors greater than number of visitor and order by number of visitors asc
+	 * 
+	 * @param double bottomNumberOfVisitors
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsAsc(int bottomNumberOfVisitors){
+		return this.adRepository.findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsAsc(bottomNumberOfVisitors);
+	}
+	
+	/**
+	 * Find all ads by number of visitors greater than number of visitor and order by number of visitors desc
+	 * 
+	 * @param double bottomNumberOfVisitors
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsDesc(int bottomNumberOfVisitors){
+		return this.adRepository.findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsDesc(bottomNumberOfVisitors);
+	}
+	
+	/**
+	 * Find all ads by number of visitors less than number of visitor and order by number of visitors asc
+	 * 
+	 * @param double topNumberOfVisitors
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc(int topNumberOfVisitors){
+		return this.adRepository.findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc(topNumberOfVisitors);
+	}
+	
+	/**
+	 * Find all ads by number of visitors less than number of visitor and order by number of visitors desc
+	 * 
+	 * @param double topNumberOfVisitors
+	 * @return the list of the ads
+	 */
+	public List<Ad> findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc(int topNumberOfVisitors){
+		return this.adRepository.findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc(topNumberOfVisitors);
+	}
+	
+	/**
+	 * Find all ads by sell 
+	 * 
+	 * @return the list of the ads
+	 */
+	public List<Ad> findBySellSearchTrue(){
+		return this.adRepository.findBySellSearchTrue();
+	}
+	
+	/**
+	 * Find all ads by search 
+	 * 
+	 * @return the list of the ads
+	 */
+	public List<Ad> findBySellSearchFalse(){
+		return this.adRepository.findBySellSearchFalse();
+	}
+	
+	
 }
