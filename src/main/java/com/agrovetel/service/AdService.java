@@ -205,15 +205,6 @@ public class AdService {
 	}
 	
 	/**
-	 * Finding all the ads order by time stamp
-	 * 
-	 * @return
-	 */
-	public List<Ad> findAllOrderByTmeStamp(){
-		return this.adRepository.findAllOrderByTmeStamp();
-	}
-	
-	/**
 	 * Find all ads by price between order by price asc
 	 * 
 	 * @param double bottomPrice

@@ -13,8 +13,6 @@ public interface AdRepository extends CrudRepository<Ad, Long> {
 	Ad findById(long id);
 
 	List<Ad> findAll();
-	
-	List<Ad> findAllOrderByTmeStamp();
 
 	List<Ad> findAllByCategoryId(long categoryId);
 
@@ -46,13 +44,13 @@ public interface AdRepository extends CrudRepository<Ad, Long> {
 	
 	List<Ad> findByNumberOfVisitorsBetweenOrderByNumberOfVisitorsDesc(int bottomNumberOfVisitors, int topNumberOfVisitors);
 	
-	List<Ad> findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsAsc(double bottomNumberOfVisitors);
+	List<Ad> findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsAsc(int bottomNumberOfVisitors);
 	
-	List<Ad> findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsDesc(double bottomNumberOfVisitors);
+	List<Ad> findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsDesc(int bottomNumberOfVisitors);
 	
-	List<Ad> findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc(double topNumberOfVisitors);
+	List<Ad> findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc(int topNumberOfVisitors);
 	
-	List<Ad> findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc(double topNumberOfVisitors);
+	List<Ad> findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc(int topNumberOfVisitors);
 	
 	List<Ad> findBySellSearchTrue();
 	
