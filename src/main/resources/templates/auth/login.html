@@ -7,25 +7,25 @@
 				<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 					<div class="card card-signin my-5">
 						<div class="card-body">
-							<h5 class="card-title text-center">Sign In</h5>
+							<h5 class="card-title text-center" th:text="#{login.sign.in}">Sign in</h5>
 							<form name="login" th:action="@{/login}" method="post"
 								class="form-signin">
-								<div id="err" th:if="${param.error}" class="alert alert-danger">Username
+								<div id="err" th:if="${param.error}" class="alert alert-danger" th:text="#{login.alert}">Username
 									or password not ok</div>
-								<div th:if="${param.logout}" class="alert alert-success">Successful
+								<div th:if="${param.logout}" class="alert alert-success" th:text="#{login.successful.logout}">Successful
 									logout</div>
-								<label for="username" class="sr-only">Username</label> <input
+								<label for="username" class="sr-only"  >Username</label> <input
 									type="text" id="username" name="username" class="form-control"
-									placeholder="Username" required="true" /> <label
-									for="password" class="sr-only">Password</label> <input
+									placeholder="Username" th:placeholder="#{login.username}" required="true" /> <label
+									for="password" class="sr-only" >Password</label> <input
 									type="password" id="password" name="password"
-									class="form-control" placeholder="Password" required="true" />
+									class="form-control" placeholder="Password" th:placeholder="#{login.password}" required="true" />
 								<div class="checkbox">
 									<label> <input id="remember-me" name="remember-me"
-										type="checkbox" /> Remind me
+										type="checkbox" th:text="#{login.remind.me}" />
 									</label>
 								</div>
-								<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+								<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.login}">Login</button>
 							</form>
 						</div>
 					</div>
