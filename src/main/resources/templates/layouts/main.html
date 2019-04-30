@@ -98,7 +98,7 @@
 						<form action="#" class="search-wrap">
 							<div class="input-group w-100">
 								<input type="text" class="form-control" style="width: 55%;"
-									placeholder="Search"> <select class="custom-select"
+									placeholder="Search" th:placeholder="#{main.search}"> <select class="custom-select"
 									name="category_name">
 									<option value="" th:text="#{main.alltype}">All type</option>
 									<option value="codex" th:text="#{main.special}">Special</option>
@@ -180,7 +180,7 @@
 								<div class="card-body">
 									<form class="pb-3">
 										<div class="input-group">
-											<input class="form-control" placeholder="Search" type="text">
+											<input class="form-control" placeholder="Search" type="text" th:placeholder = "#{main.search}">
 											<div class="input-group-append">
 												<button class="btn btn-primary" type="button">
 													<i class="fa fa-search"></i>
