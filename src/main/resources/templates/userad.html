@@ -5,14 +5,14 @@
 
 		<div class="card">
 			<header class="card-header">
-				<h4 class="card-title mt-2">Edit/add ad</h4>
+				<h4 class="card-title mt-2" th:text="#{userad.edit.add}">Edit/add ad</h4>
 			</header>
 			<article class="card-body">
 				<form th:action="@{/user/ads/{id}/update(id=${ad.id})}" th:object="${ad}">
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Title</label> <input type="text" class="form-control"
+							<label th:text="#{ad.title}">Title</label> <input type="text" class="form-control"
 								th:field="*{title}" placeholder="">
 						</div>
 					</div>
@@ -20,7 +20,7 @@
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Description</label> <input type="text" class="form-control"
+							<label th:text="#{ad.description}">Description</label> <input type="text" class="form-control"
 								th:field="*{description}" placeholder="">
 						</div>
 					</div>
@@ -28,28 +28,28 @@
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Price</label> <input type="text" class="form-control"
+							<label th:text="#{ad.price}">Price</label> <input type="text" class="form-control"
 								th:field="*{price}" placeholder="">
 						</div>
 					</div>
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Year of manufact</label> <input type="text" class="form-control"
+							<label th:text="#{ad.year.of.manufact}">Year of manufact</label> <input type="text" class="form-control"
 								th:field="*{yearOfManufact}" placeholder="">
 						</div>
 					</div>
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Horse power</label> <input type="text" class="form-control"
+							<label th:text="#{ad.horse.power}">Horse power</label> <input type="text" class="form-control"
 								th:field="*{horsePower}" placeholder="">
 						</div>
 					</div>
 					<!-- form-group end.// -->
 					</div>
 					<!-- form-row end.// -->
-					<button class="btn btn-primary" type="submit">Update</button>
+					<button class="btn btn-primary" type="submit" th:text="#{ad.update}">Update</button>
 				</form>
 			</article>
 		</div>

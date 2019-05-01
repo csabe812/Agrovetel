@@ -5,19 +5,19 @@
 
 		<div class="card">
 			<header class="card-header">
-				<h4 class="card-title mt-2">Edit user</h4>
+				<h4 class="card-title mt-2" th:text="#{user.edit}">Edit user</h4>
 			</header>
 			<article class="card-body">
 				<form th:object="${user}">
 					<div class="form-row">
 						<div class="col form-group">
-							<label>Full name</label> <input type="text" class="form-control" th:field="*{fullname}"
+							<label th:text="#{signup.fullname}">Full name</label> <input type="text" class="form-control" th:field="*{fullname}"
 								placeholder="">
 						</div>
 					</div>
 					<!-- form-row end.// -->
 					<div class="form-group">
-						<label>Email address</label> <input type="email"
+						<label th:text="#{signup.email}">Email</label> <input type="email"
 							class="form-control" placeholder="" th:field="*{email}">
 							<span
 											th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
@@ -25,28 +25,28 @@
 					</div>
 					<!-- form-row.// -->
 					<div class="form-group">
-						<label>Old password</label> <input class="form-control"
+						<label th:text="#{user.old.password}">Old password</label> <input class="form-control"
 							type="password" th:field="*{password}">
 					</div>
 					
 					<!-- form-row.// -->
 					<div class="form-group">
-						<label>New password</label> <input class="form-control"
+						<label th:text="#{user.new.password}">New password</label> <input class="form-control"
 							type="password" th:field="*{password}">
 					</div>
 					
 					<!-- form-row.// -->
 					<div class="form-group">
-						<label>New password again</label> <input class="form-control"
+						<label th:text="#{user.new.password.again}">New password again</label> <input class="form-control"
 							type="password" th:field="*{password}">
 					</div>
 					<!-- form-group end.// -->
 					<div class="form-group">
-						<a href="" th:href="@{/admin/users/{id}/update(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Update</a>
+						<a href="" th:href="@{/admin/users/{id}/update(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit" th:text="#{ad.update}"></span></a>
 					</div>
 					<!-- form-group// -->
-					<small class="text-muted">By clicking the 'Sign Up' button,
-						you confirm that you accept our <br> Terms of use and Privacy
+					<small class="text-muted" th:text="#{user.terms}">By clicking the 'Sign Up' button,
+						you confirm that you accept our Terms of use and Privacy
 						Policy.
 					</small>
 				</form>

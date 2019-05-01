@@ -2,8 +2,8 @@
 <html layout:decorate="layouts/main">
 <body>
 	<div layout:fragment="contentFragment">
-		<a th:href="@{/user/ads}" class="btn btn-info">My ads</a>
-		<a th:href="@{/user/aboutme}" class="btn btn-info">Edit about me</a>
+		<a th:href="@{/user/ads}" class="btn btn-info" th:text = "#{mypage.myads}">My ads</a>
+		<a th:href="@{/user/aboutme}" class="btn btn-info" th:text = "#{mypage.editaboutme}">Edit about me</a>
 	</div>
 </body>
 </html>
