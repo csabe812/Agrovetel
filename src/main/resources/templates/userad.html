@@ -8,7 +8,8 @@
 				<h4 class="card-title mt-2">Edit/add ad</h4>
 			</header>
 			<article class="card-body">
-				<form th:action="@{/user/ads/{id}/update(id=${ad.id})}" th:object="${ad}">
+				<form th:action="@{/user/ads/{id}/update(id=${ad.id})}"
+					th:object="${ad}">
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
@@ -20,8 +21,8 @@
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Description</label> <input type="text" class="form-control"
-								th:field="*{description}" placeholder="">
+							<label>Description</label> <input type="text"
+								class="form-control" th:field="*{description}" placeholder="">
 						</div>
 					</div>
 					<!-- form-row.// -->
@@ -35,24 +36,31 @@
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Year of manufact</label> <input type="text" class="form-control"
-								th:field="*{yearOfManufact}" placeholder="">
+							<label>Year of manufact</label> <input type="text"
+								class="form-control" th:field="*{yearOfManufact}" placeholder="">
 						</div>
 					</div>
 					<div class="form-row">
 						<!-- form-group end.// -->
 						<div class="col form-group">
-							<label>Horse power</label> <input type="text" class="form-control"
-								th:field="*{horsePower}" placeholder="">
+							<label>Horse power</label> <input type="text"
+								class="form-control" th:field="*{horsePower}" placeholder="">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="customFile">
+							<label class="custom-file-label" for="customFile">Choose
+								file</label>
 						</div>
 					</div>
 					<!-- form-group end.// -->
-					</div>
-					<!-- form-row end.// -->
-					<button class="btn btn-primary" type="submit">Update</button>
-				</form>
-			</article>
 		</div>
+		<!-- form-row end.// -->
+		<button class="btn btn-primary" type="submit">Update</button>
+		</form>
+		</article>
+	</div>
 
 	</div>
 </body>
