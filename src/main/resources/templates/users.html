@@ -5,11 +5,11 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">E-mail</th>
-					<th scope="col">Full name</th>
-					<th scope="col">Enabled</th>
-					<th scope="col">Action</th>
+					<th scope="col" th:text="#{main.id}">Id</th>
+					<th scope="col" th:text="#{signup.email}">E-mail</th>
+					<th scope="col" th:text="#{signup.fullname}">Full name</th>
+					<th scope="col" th:text="#{main.enable}">Enabled</th>
+					<th scope="col" th:text="#{main.action}">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -19,9 +19,9 @@
 					<td th:text="${user.fullname}">Mark</td>
 					<td th:text="${user.enabled}">Mark</td>
 					<td>
-					<a th:href="@{/admin/users/{id}/enable(id=${user.id})}" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span> Enable</a>
-					<a href="" th:href="@{/admin/users/{id}(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-					<a th:href="@{/admin/users/{id}/disable(id=${user.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Disable</a>
+					<a th:href="@{/admin/users/{id}/enable(id=${user.id})}" class="btn btn-success"><span class="glyphicon glyphicon-remove" th:text="#{main.enable}"></span></a>
+					<a href="" th:href="@{/admin/users/{id}(id=${user.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit" th:text="#{main.edit}"></span></a>
+					<a th:href="@{/admin/users/{id}/disable(id=${user.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove" th:text="#{main.disable}"></span></a>
 					</td>
 					
 				</tr>

@@ -48,8 +48,105 @@ public class AdRepositoryTest {
 	 */
 	@Test
 	public void testFindAllByCountyId() {
-		List<Ad> ad = this.adRepository.findAllByCountyId(1);
-		assert (ad.size() == 3);
+		List<Ad> ads = this.adRepository.findAllByCountyId(1);
+		assert (ads.size() == 3);
 	}
+	
+	@Test
+	public void testFindByPriceBetweenOrderByPriceAsc() {
+		List<Ad> ads = this.adRepository.findByPriceBetweenOrderByPriceAsc(20, 35);
+		assert(ads.size() == 4);
+		assert(ads.get(0).getTitle().equals("Ad1"));
+	}
+	
+	@Test
+	public void testFindByPriceBetweenOrderByPriceDesc() {
+		List<Ad> ads = this.adRepository.findByPriceBetweenOrderByPriceDesc(25, 35);
+		assert(ads.size() == 3);
+		assert(ads.get(0).getTitle().equals("Ad3"));
+	}
+	
+	@Test
+	public void testFindByPriceGreaterThanOrderByPriceAsc() {
+		List<Ad> ads = this.adRepository.findByPriceGreaterThanOrderByPriceAsc(34);
+		assert(ads.size() == 2);
+		assert(ads.get(0).getTitle().equals("Ad3"));
+	}
+	
+	@Test
+	public void testFindByPriceGreaterThanOrderByPriceDesc() {
+		List<Ad> ads = this.adRepository.findByPriceGreaterThanOrderByPriceDesc(34);
+		assert(ads.size() == 2);
+		assert(ads.get(0).getTitle().equals("Ad5"));
+	}
+	
+	@Test
+	public void testFindByPriceLessThanOrderByPriceAsc() {
+		List<Ad> ads = this.adRepository.findByPriceLessThanOrderByPriceAsc(34);
+		assert(ads.size() == 3);
+		assert(ads.get(0).getTitle().equals("Ad1"));
+	}
+	
+	@Test
+	public void testFindByPriceLessThanOrderByPriceDesc() {
+		List<Ad> ads = this.adRepository.findByPriceLessThanOrderByPriceDesc(34);
+		assert(ads.size() == 3);
+		assert(ads.get(0).getTitle().equals("Ad4"));
+	}
+	
+	@Test
+	public void testFindByNumberOfVisitorsBetweenOrderByNumberOfVisitorsDesc() {
+		List<Ad> ads = this.adRepository.findByNumberOfVisitorsBetweenOrderByNumberOfVisitorsDesc(5,12);
+		assert(ads.size() == 2);
+		assert(ads.get(0).getTitle().equals("Ad4"));
+	}
+	
+	@Test
+	public void testFindByNumberOfVisitorsBetweenOrderByNumberOfVisitorsAsc() {
+		List<Ad> ads = this.adRepository.findByNumberOfVisitorsBetweenOrderByNumberOfVisitorsAsc(5,12);
+		assert(ads.size() == 2);
+		assert(ads.get(0).getTitle().equals("Ad3"));
+	}
+	
+	@Test
+	public void testFindByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsAsc() {
+		List<Ad> ads = this.adRepository.findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsAsc(4);
+		assert(ads.size() == 2);
+		assert(ads.get(0).getTitle().equals("Ad3"));
+	}
+	
+	@Test
+	public void testFindByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsDesc() {
+		List<Ad> ads = this.adRepository.findByNumberOfVisitorsGreaterThanOrderByNumberOfVisitorsDesc(4);
+		assert(ads.size() == 2);
+		assert(ads.get(0).getTitle().equals("Ad4"));
+	}
+
+	@Test
+	public void testFindByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc() {
+		List<Ad> ads = this.adRepository.findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc(6);
+		assert(ads.size() == 4);
+		assert(ads.get(2).getTitle().equals("Ad1"));
+	}
+	
+	@Test
+	public void testFindByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc() {
+		List<Ad> ads = this.adRepository.findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc(6);
+		assert(ads.size() == 4);
+		assert(ads.get(0).getTitle().equals("Ad3"));
+	}
+	
+	@Test
+	public void testFindBySellSearchTrue() {
+		List<Ad> ads = this.adRepository.findBySellSearchTrue();
+		assert(ads.size() == 4);
+	}
+	
+	@Test
+	public void testFindBySellSearchFalse() {
+		List<Ad> ads = this.adRepository.findBySellSearchFalse();
+		assert(ads.size() == 1);
+	}
+
 
 }

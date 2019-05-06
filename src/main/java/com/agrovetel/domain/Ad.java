@@ -31,7 +31,7 @@ public class Ad {
 	private LocalDateTime timeStamp;
 	/* if this value is true, it means sell, if this value false, it means search */
 	@Column
-	private boolean sellOrSearch;
+	private boolean sellSearch;
 	@Column
 	private int horsePower;
 	@Column
@@ -71,7 +71,7 @@ public class Ad {
 		this.price = price;
 		this.description = description;
 		this.timeStamp = timeStamp;
-		this.sellOrSearch = sellOrSearch;
+		this.sellSearch = sellOrSearch;
 		this.horsePower = horsePower;
 		this.yearOfManufact = yearOfManufact;
 		this.category = category;
@@ -86,7 +86,7 @@ public class Ad {
 		this.title = title;
 		this.price = price;
 		this.timeStamp = timeStamp;
-		this.sellOrSearch = sellOrSearch;
+		this.sellSearch = sellOrSearch;
 		this.user = user;
 	}
 
@@ -98,7 +98,7 @@ public class Ad {
 		this.price = price;
 		this.description = description;
 		this.timeStamp = timeStamp;
-		this.sellOrSearch = sellOrSearch;
+		this.sellSearch = sellOrSearch;
 		this.horsePower = horsePower;
 		this.yearOfManufact = yearOfManufact;
 		this.category = category;
@@ -148,11 +148,11 @@ public class Ad {
 	}
 
 	public boolean isSellOrSearch() {
-		return sellOrSearch;
+		return sellSearch;
 	}
 
 	public void setSellOrSearch(boolean sellOrSearch) {
-		this.sellOrSearch = sellOrSearch;
+		this.sellSearch = sellOrSearch;
 	}
 
 	public int getHorsePower() {
@@ -222,7 +222,7 @@ public class Ad {
 	@Override
 	public String toString() {
 		return "Ad [id=" + id + ", title=" + title + ", price=" + price + ", description=" + description
-				+ ", timeStamp=" + timeStamp + ", sellOrSearch=" + sellOrSearch + ", horsePower=" + horsePower
+				+ ", timeStamp=" + timeStamp + ", sellOrSearch=" + sellSearch + ", horsePower=" + horsePower
 				+ ", yearOfManufact=" + yearOfManufact + ", category=" + category + ", county=" + county
 				+ ", manufacturer=" + manufacturer + ", user=" + user + ", numberOfVisitors=" + numberOfVisitors + "]";
 	}

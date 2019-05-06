@@ -2,14 +2,14 @@
 <html layout:decorate="layouts/main">
 <body>
 	<div layout:fragment="contentFragment">
-	<a th:href="@{/admin/categories/new}" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span> New</a>
+	<a th:href="@{/admin/categories/new}" class="btn btn-success"><span class="glyphicon glyphicon-remove" th:text= "#{main.new}"></span></a>
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Category</th>
-					<th scope="col">Enable?</th>
-					<th scope="col">Action</th>
+					<th scope="col" th:text= "#{main.id}">Id</th>
+					<th scope="col" th:text= "#{category.category}">Category</th>
+					<th scope="col" th:text= "#{main.isitenabled}">Enable?</th>
+					<th scope="col" th:text= "#{main.action}">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,9 +18,9 @@
 					<td th:text="${category.name}">Mark</td>
 					<td th:text="${category.enabled}">Mark</td>
 					<td>
-					<a th:href="@{/admin/categories/{id}/enable(id=${category.id})}" class="btn btn-success"><span class="glyphicon glyphicon-remove"></span> Enable</a>
-					<a th:href="@{/admin/categories/{id}(id=${category.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-					<a th:href="@{/admin/categories/{id}/disable(id=${category.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Disable</a>
+					<a th:href="@{/admin/categories/{id}/enable(id=${category.id})}" class="btn btn-success"><span class="glyphicon glyphicon-remove" th:text= "#{main.enable}"></span></a>
+					<a th:href="@{/admin/categories/{id}(id=${category.id})}" class="btn btn-primary"><span class="glyphicon glyphicon-edit" th:text= "#{main.edit}"></span></a>
+					<a th:href="@{/admin/categories/{id}/disable(id=${category.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove" th:text= "#{main.disable}"></span></a>
 					</td>
 				</tr>
 			</tbody>

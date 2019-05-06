@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Bootstrap-ecommerce by Vosidiy">
 
-<title>Agrovetel</title>
+<title th:text="#{app.name}">Agrovetel</title>
 
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
@@ -65,19 +65,19 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item active"><a class="nav-link"
-							href="@{/}">Home <span
+							href="@{/}" th:text="#{main.home}">Home <span
 								class="sr-only">(current)</span></a></li>
 						<li class="nav-item"><a class="nav-link"
-							th:href="@{/mysite}"> My site </a></li>
+							th:href="@{/mysite}" > My site </a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">
+							class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown" th:text="#{main.dropdown}">
 								Dropdown </a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#"> Menu item 1</a></li>
-								<li><a class="dropdown-item" href="#"> Menu item 2 </a></li>
+								<li><a class="dropdown-item" href="#" th:text="#{main.menu1}"> Menu item 1</a></li>
+								<li><a class="dropdown-item" href="#" th:text="#{main.menu2}"> Menu item 2 </a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link"
-							href="http://bootstrap-ecommerce.com"> Download <i
+							href="http://bootstrap-ecommerce.com" th:text="#{main.download}"> Download <i
 								class="fa fa-download"></i></a></li>
 					</ul>
 				</div>
@@ -90,7 +90,7 @@
 					<div class="col-lg-3 col-sm-4">
 						<div class="brand-wrap">
 							<img class="logo" src="images/logo-dark.png">
-							<h2 class="logo-text">LOGO</h2>
+							<h2 class="logo-text" th:text = "#{app.name}">LOGO</h2>
 						</div>
 						<!-- brand-wrap.// -->
 					</div>
@@ -98,12 +98,12 @@
 						<form action="#" class="search-wrap">
 							<div class="input-group w-100">
 								<input type="text" class="form-control" style="width: 55%;"
-									placeholder="Search"> <select class="custom-select"
+									placeholder="Search" th:placeholder="#{main.search}"> <select class="custom-select"
 									name="category_name">
-									<option value="">All type</option>
-									<option value="codex">Special</option>
-									<option value="comments">Only best</option>
-									<option value="content">Latest</option>
+									<option value="" th:text="#{main.alltype}">All type</option>
+									<option value="codex" th:text="#{main.special}">Special</option>
+									<option value="comments" th:text="#{main.onlybest}">Only best</option>
+									<option value="content" th:text="#{main.latest}">Latest</option>
 								</select>
 								<div class="input-group-append">
 									<button class="btn btn-primary" type="submit">
@@ -118,11 +118,11 @@
 					<div class="col-lg-6-24 col-sm-7 col-8  order-2  order-lg-3">
 						<div class="d-flex justify-content-end">
 							<div class="widget-header">
-								<small class="title text-muted">Welcome guest!</small>
+								<small class="title text-muted" th:text="#{main.welcome}">Welcome guest!</small>
 								<div>
-									<a th:href="@{/login}">Sign in</a> <span class="dark-transp">
-										| </span> <a th:href="@{/logout}"> Logout</a>
-										| </span> <a th:href="@{/signup}"> Register</a>
+									<a th:href="@{/login}" th:text="#{login.signin}">Sign in</a> <span class="dark-transp">
+										| </span> <a th:href="@{/logout}" th:text="#{main.logout}"> Logout</a>
+										| </span> <a th:href="@{/signup}" th:text="#{main.register}"> Register</a>
 								</div>
 							</div>
 						</div>
@@ -145,13 +145,13 @@
 	<!-- ========================= SECTION PAGETOP ========================= -->
 	<section class="section-pagetop bg-secondary">
 		<div class="container clearfix">
-			<h2 class="title-page">Page heading</h2>
+			<h2 class="title-page" th:text="#{main.pageheading}">Page heading</h2>
 
 			<nav class="float-left">
 				<ol class="breadcrumb text-white">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item"><a href="#">Library</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Data</li>
+					<li class="breadcrumb-item"><a href="#" th:text="#{main.home}">Home</a></li>
+					<li class="breadcrumb-item"><a href="#" th:text="#{main.library}">Library</a></li>
+					<li class="breadcrumb-item active" aria-current="page" th:text="#{main.data}">Data</li>
 				</ol>
 			</nav>
 		</div>
@@ -172,7 +172,7 @@
 								<a class="" aria-expanded="true" href="#" data-toggle="collapse"
 									data-target="#collapse22"> <i
 									class="icon-action fa fa-chevron-down"></i>
-									<h6 class="title">By Category</h6>
+									<h6 class="title" th:text="#{main.bycategory}">By Category</h6>
 								</a>
 							</header>
 							<div style="" class="filter-content collapse show"
@@ -180,7 +180,7 @@
 								<div class="card-body">
 									<form class="pb-3">
 										<div class="input-group">
-											<input class="form-control" placeholder="Search" type="text">
+											<input class="form-control" placeholder="Search" type="text" th:placeholder = "#{main.search}">
 											<div class="input-group-append">
 												<button class="btn btn-primary" type="button">
 													<i class="fa fa-search"></i>
@@ -213,7 +213,7 @@
 							<header class="card-header">
 								<a href="#" data-toggle="collapse" data-target="#collapse33">
 									<i class="icon-action fa fa-chevron-down"></i>
-									<h6 class="title">By Price</h6>
+									<h6 class="title" th:text="#{main.byprice}">By Price</h6>
 								</a>
 							</header>
 							<div class="filter-content collapse show" id="collapse33">
@@ -222,16 +222,16 @@
 										name="">
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label>Min</label> <input class="form-control"
+											<label th:text="#{main.min}">Min</label> <input class="form-control"
 												placeholder="$0" type="number">
 										</div>
 										<div class="form-group text-right col-md-6">
-											<label>Max</label> <input class="form-control"
+											<label th:text="#{main.max}">Max</label> <input class="form-control"
 												placeholder="$1,0000" type="number">
 										</div>
 									</div>
 									<!-- form-row.// -->
-									<button class="btn btn-block btn-outline-primary">Apply</button>
+									<button class="btn btn-block btn-outline-primary" th:text="#{main.apply}">Apply</button>
 								</div>
 								<!-- card-body.// -->
 							</div>
@@ -242,7 +242,7 @@
 							<header class="card-header">
 								<a href="#" data-toggle="collapse" data-target="#collapse44">
 									<i class="icon-action fa fa-chevron-down"></i>
-									<h6 class="title">By Feature</h6>
+									<h6 class="title" th:text="#{main.byfeature}">By Feature</h6>
 								</a>
 							</header>
 							<div class="filter-content collapse show" id="collapse44">
@@ -329,39 +329,39 @@
 			<section class="footer-top padding-top">
 				<div class="row">
 					<aside class="col-sm-3 col-md-3 white">
-						<h5 class="title">Customer Services</h5>
+						<h5 class="title" th:text="#{main.customer.service}">Customer Services</h5>
 						<ul class="list-unstyled">
-							<li><a href="#">Help center</a></li>
-							<li><a href="#">Money refund</a></li>
-							<li><a href="#">Terms and Policy</a></li>
-							<li><a href="#">Open dispute</a></li>
+							<li><a href="#" th:text="#{main.help.center}">Help center</a></li>
+							<li><a href="#" th:text="#{main.money.refund}">Money refund</a></li>
+							<li><a href="#" th:text="#{main.terms.policy}">Terms and Policy</a></li>
+							<li><a href="#" th:text="#{main.open.dispute}">Open dispute</a></li>
 						</ul>
 					</aside>
 					<aside class="col-sm-3  col-md-3 white">
-						<h5 class="title">My Account</h5>
+						<h5 class="title" th:text="#{main.my.account}">My Account</h5>
 						<ul class="list-unstyled">
-							<li><a href="#"> User Login </a></li>
-							<li><a href="#"> User register </a></li>
-							<li><a href="#"> Account Setting </a></li>
-							<li><a href="#"> My Orders </a></li>
-							<li><a href="#"> My Wishlist </a></li>
+							<li><a href="#" th:text="#{main.user.login}"> User Login </a></li>
+							<li><a href="#" th:text="#{main.user.register}"> User register </a></li>
+							<li><a href="#" th:text="#{main.account.setting}"> Account Setting </a></li>
+							<li><a href="#" th:text="#{main.my.orders}"> My Orders </a></li>
+							<li><a href="#" th:text="#{main.my.wishlist}"> My Wishlist </a></li>
 						</ul>
 					</aside>
 					<aside class="col-sm-3  col-md-3 white">
-						<h5 class="title">About</h5>
+						<h5 class="title" th:text="#{main.about}">About</h5>
 						<ul class="list-unstyled">
-							<li><a href="#"> Our history </a></li>
-							<li><a href="#"> How to buy </a></li>
-							<li><a href="#"> Delivery and payment </a></li>
-							<li><a href="#"> Advertice </a></li>
-							<li><a href="#"> Partnership </a></li>
+							<li><a href="#" th:text="#{main.our.history}"> Our history </a></li>
+							<li><a href="#" th:text="#{main.howtobuy}"> How to buy </a></li>
+							<li><a href="#" th:text="#{main.delivery.payment}"> Delivery and payment </a></li>
+							<li><a href="#" th:text="#{main.advertice}"> Advertice </a></li>
+							<li><a href="#" th:text="#{main.partnership}"> Partnership </a></li>
 						</ul>
 					</aside>
 					<aside class="col-sm-3">
 						<article class="white">
-							<h5 class="title">Contacts</h5>
+							<h5 class="title" th:text="#{main.contacts}">Contacts</h5>
 							<p>
-								<strong>Phone: </strong> +123456789 <br> <strong>Fax:</strong>
+								<strong th:text="#{main.phone}">Phone: </strong> +123456789 <br> <strong th:text="#{main.fax}">Fax:</strong>
 								+123456789
 							</p>
 

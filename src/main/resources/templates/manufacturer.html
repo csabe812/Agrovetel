@@ -5,7 +5,7 @@
 
 		<div class="card">
 			<header class="card-header">
-				<h4 class="card-title mt-2">Edit/add category</h4>
+				<h4 class="card-title mt-2" th:text = "#{manufacturer.edit.add}">Edit/add category</h4>
 			</header>
 			<article class="card-body">
 				<form
@@ -13,13 +13,13 @@
 					th:object="${manufacturer}">
 					<div class="form-row">
 						<div class="col form-group">
-							<label>Manufacturer name</label> <input type="text"
+							<label th:text = "#{manufacturer.name}">Manufacturer name</label> <input type="text"
 								class="form-control" th:field="*{manufacturerName}"
 								placeholder="">
 						</div>
 					</div>
 					<!-- form-row end.// -->
-					<button class="btn btn-primary" type="submit">Update/Save</button>
+					<button class="btn btn-primary" type="submit" th:text = "#{main.save}">Save</button>
 				</form>
 			</article>
 		</div>
