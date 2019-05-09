@@ -10,16 +10,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.agrovetel.domain.User;
+import com.agrovetel.service.AdService;
 import com.agrovetel.service.UserService;
 
 @Controller
 public class MainConroller {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private UserService userService;
+
+	@Autowired
+	private AdService adService;
 
 	/**
 	 * Setter-based autowiring
@@ -31,6 +36,12 @@ public class MainConroller {
 		this.userService = userService;
 	}
 
+	@GetMapping("/")
+	public String displayAllAds(Model model) {
+		model.addAttribute("ads", this.adService.findAll());
+		return "allAds";
+	}
+	
 	/**
 	 * 
 	 * 
