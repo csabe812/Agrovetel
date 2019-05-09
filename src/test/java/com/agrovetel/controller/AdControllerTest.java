@@ -20,7 +20,7 @@ import com.agrovetel.service.AdService;
 public class AdControllerTest {
 	
 	private final String PATH_ADS = "/ads";
-	private final String VIEW_ADS = "ads";
+	private final String VIEW_ADS = "allAds";
 	
 	@Autowired
     private MockMvc mockMvc;

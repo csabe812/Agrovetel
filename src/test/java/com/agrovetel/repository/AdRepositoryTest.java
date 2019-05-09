@@ -55,28 +55,28 @@ public class AdRepositoryTest {
 	@Test
 	public void testFindByPriceBetweenOrderByPriceAsc() {
 		List<Ad> ads = this.adRepository.findByPriceBetweenOrderByPriceAsc(20, 35);
-		assert(ads.size() == 4);
+		assert(ads.size() == 5);
 		assert(ads.get(0).getTitle().equals("Ad1"));
 	}
 	
 	@Test
 	public void testFindByPriceBetweenOrderByPriceDesc() {
 		List<Ad> ads = this.adRepository.findByPriceBetweenOrderByPriceDesc(25, 35);
-		assert(ads.size() == 3);
+		assert(ads.size() == 4);
 		assert(ads.get(0).getTitle().equals("Ad3"));
 	}
 	
 	@Test
 	public void testFindByPriceGreaterThanOrderByPriceAsc() {
 		List<Ad> ads = this.adRepository.findByPriceGreaterThanOrderByPriceAsc(34);
-		assert(ads.size() == 2);
+		assert(ads.size() == 3);
 		assert(ads.get(0).getTitle().equals("Ad3"));
 	}
 	
 	@Test
 	public void testFindByPriceGreaterThanOrderByPriceDesc() {
 		List<Ad> ads = this.adRepository.findByPriceGreaterThanOrderByPriceDesc(34);
-		assert(ads.size() == 2);
+		assert(ads.size() == 3);
 		assert(ads.get(0).getTitle().equals("Ad5"));
 	}
 	
@@ -125,21 +125,22 @@ public class AdRepositoryTest {
 	@Test
 	public void testFindByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc() {
 		List<Ad> ads = this.adRepository.findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsAsc(6);
-		assert(ads.size() == 4);
-		assert(ads.get(2).getTitle().equals("Ad1"));
+		assert(ads.size() == 5);
+		assert(ads.get(2).getTitle().equals("Ad6"));
 	}
 	
 	@Test
 	public void testFindByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc() {
 		List<Ad> ads = this.adRepository.findByNumberOfVisitorsLessThanOrderByNumberOfVisitorsDesc(6);
-		assert(ads.size() == 4);
+		assert(ads.size() == 5);
+		System.out.println(ads.get(0).getTitle());
 		assert(ads.get(0).getTitle().equals("Ad3"));
 	}
 	
 	@Test
 	public void testFindBySellSearchTrue() {
 		List<Ad> ads = this.adRepository.findBySellSearchTrue();
-		assert(ads.size() == 4);
+		assert(ads.size() == 5);
 	}
 	
 	@Test

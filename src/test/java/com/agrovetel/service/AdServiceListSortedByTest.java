@@ -46,7 +46,7 @@ public class AdServiceListSortedByTest {
 				user, 0);
 		adService.updateCreateAd(ad);
 		List<Ad> ads = adService.findAll();
-		assert (ads.size() == 6);
+		assert (ads.size() == 7);
 		assert (ad.getDescription().equals("Valami leírás"));
 		assert (ad.getHorsePower() == 150);
 		assert (ad.getManufacturer().getId() == 1);
@@ -111,7 +111,7 @@ public class AdServiceListSortedByTest {
 		List<Ad> ads = adService.findByCategory(3);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
-		assert (ads.size() == 1);
+		assert (ads.size() == 2);
 		assert (ads.get(0).getHorsePower() == 1150);
 	}
 
@@ -133,8 +133,8 @@ public class AdServiceListSortedByTest {
 	}
 
 	@Test
-	public void testFindAllAdByUser3() {
-		List<Ad> ads = adService.findAllByUser(3);
+	public void testFindAllAdByUser5() {
+		List<Ad> ads = adService.findAllByUser(5);
 		assertNotNull(ads);
 		assertTrue(!ads.isEmpty());
 		assert (ads.size() == 3);

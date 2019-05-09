@@ -35,10 +35,10 @@ public class UserRepositoryTest {
 	@Test
 	public void testFindAdById2() {
 		User user = userRepository.findById(1);
-		assert(user.getFullname().toLowerCase().equals("joe doe"));
-		assert(user.getEmail().equals("example@example.com"));
+		assert(user.getFullname().toLowerCase().equals("admin"));
+		assert(user.getEmail().equals("admin"));
 		assert(user.getEnabled());
-		assert(user.getPassword().equals("password"));
+		assert(user.getPassword().equals("$2a$10$5vO5XjervV.7h1KJE8XQSes5WQOnAyP0OS6LLMwpFA2tEV5OrZDA6"));
 			
 	}
 

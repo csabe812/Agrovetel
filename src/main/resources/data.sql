@@ -47,3 +47,5 @@ insert into ads (title, description, price, horse_power, sell_search, year_of_ma
 values ('Ad4', 'Ad4 description', 30, 3, false, 2019, 2, 5, 2, 12, true);
 insert into ads (title, description, price, horse_power, sell_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
 values ('Ad5', 'Ad5 description', 220, 1150, true, 1994, 3, 5, 3, 0, false);
+insert into ads (title, description, price, horse_power, sell_search, year_of_manufact, category_id, user_id, county_id, number_of_visitors, enabled)
+values ('Ad6', 'Ad6 description', 35, 53, true, 1922, 3, 2, 3, 0, false);
